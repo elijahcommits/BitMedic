@@ -70,6 +70,7 @@ import Layout from '../layouts/Layout.astro';
       min-height: 100vh;
       margin: 0;
       padding-top: 25px;
+      padding-bottom: 60px; /* Added: Toolbar height (40px) + 20px desired margin */
 
       user-select: none;
       -webkit-user-select: none;
@@ -87,6 +88,7 @@ import Layout from '../layouts/Layout.astro';
       display: flex;
       flex-direction: column;
       align-items: center;
+      flex-grow: 1; /* Allows main area to grow and push padding to bottom */
     }
 
     .desktop-icons-container {
@@ -138,9 +140,8 @@ import Layout from '../layouts/Layout.astro';
       background-color: white;
       color: black;
       padding: 2px 5px;
-      border-radius: 3px; /* Slightly more rounded corners */
+      border-radius: 3px;
       box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-      /* min-height: 2.6em; -- Removed to allow natural height for single/double lines */
     }
   </style>
 </Layout>
