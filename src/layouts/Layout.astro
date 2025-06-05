@@ -7,7 +7,7 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/BitMedic/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/BitMedic/favicon.svg" /> {/* UPDATED: /BitMedic prefix added */}
 		<meta name="generator" content={Astro.generator} />
 		<title>BitMedic Helps!</title>
     <script is:inline>
@@ -31,7 +31,7 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
 </html>
 
 <style is:global>
-  /* Consistent Box Sizing & Base Resets */
+  /* All global styles remain the same from your last version */
   *,
   *::before,
   *::after {
@@ -63,8 +63,6 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     flex-direction: column;
   }
 
-  /* Reset for many common elements to inherit font properties.
-     NOTE: strong, em, b, i are handled separately below to ensure their styles. */
   div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -82,13 +80,11 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     vertical-align: baseline;
   }
 
-  /* HTML5 display-role reset */
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
 
-  /* Explicitly set default styles for semantic text elements */
   strong, b {
     font-weight: bolder;
   }
@@ -97,7 +93,6 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     font-style: italic;
   }
 
-  /* Other common resets */
   ol, ul {
     list-style: none;
   }
@@ -112,7 +107,7 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     border-collapse: collapse;
     border-spacing: 0;
   }
-  img, picture, video, canvas, svg { /* base svg styling */
+  img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
     height: auto;
