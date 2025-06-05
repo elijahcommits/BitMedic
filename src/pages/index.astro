@@ -113,23 +113,87 @@ import Layout from '../layouts/Layout.astro';
   {/* Scoped styles for index.astro page elements */}
   <style>
     .desktop-area {
-      padding: 20px;
-      padding-bottom: 60px; /* For 40px toolbar + 20px margin */
+      padding: 20px 0; /* Reduced horizontal padding on desktop-area itself */
+      padding-bottom: 60px;
       width: 100%;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: center; /* This will center the dialogue-box */
       flex-grow: 1;
     }
 
-    /* ... (Desktop Icon and Dialogue Box styles remain the same as your last version) ... */
-    .desktop-icons-container { display: flex; flex-wrap: wrap; gap: 35px; margin-bottom: 40px; justify-content: flex-start; width: 100%; max-width: 1000px; padding-left: 15px; box-sizing: border-box; }
-    .desktop-icon { display: flex; flex-direction: column; align-items: center; width: 120px; text-align: center; text-decoration: none; font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif; font-size: 14px; cursor: pointer; padding: 8px 5px; border: 1px solid transparent; word-wrap: break-word; margin-bottom: 15px; box-sizing: border-box; }
-    .desktop-icon:hover span, .desktop-icon:focus-visible span { background-color: #0058a8; color: white; }
-    .desktop-icon img { width: 72px; height: 72px; object-fit: contain; margin-bottom: 8px; box-sizing: border-box; }
-    .desktop-icon span { display: inline-block; line-height: 1.3; max-width: 100%; word-wrap: break-word; background-color: white; color: black; padding: 2px 5px; border-radius: 3px; box-shadow: 1px 1px 1px rgba(0,0,0,0.1); box-sizing: border-box; }
-    .dialogue-box { max-width: 740px; width: 100%; box-sizing: border-box; border: 2px outset #C0C0C0; background-color: #F0F0F0; font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif; font-size: 0.9rem; box-shadow: 5px 5px 10px rgba(0,0,0,0.3); position: relative; z-index: 10; }
+    .desktop-icons-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 35px;
+      margin-bottom: 40px;
+      justify-content: flex-start; /* Icons start at the left of this container */
+      width: 100%; /* Takes full width of its parent (.desktop-area) */
+      /* max-width: 1000px; -- REMOVED to allow it to be full screen width */
+      padding-left: 25px; /* This will be the margin from the screen edge */
+      padding-right: 25px; /* Add some padding on the right too for balance */
+      box-sizing: border-box;
+    }
+
+    .desktop-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 120px;
+      text-align: center;
+      text-decoration: none;
+      font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 8px 5px;
+      border: 1px solid transparent;
+      word-wrap: break-word;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    .desktop-icon:hover span,
+    .desktop-icon:focus-visible span {
+      background-color: #0058a8;
+      color: white;
+    }
+
+    .desktop-icon img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      margin-bottom: 8px;
+      box-sizing: border-box;
+    }
+
+    .desktop-icon span {
+      display: inline-block;
+      line-height: 1.3;
+      max-width: 100%;
+      word-wrap: break-word;
+      background-color: white;
+      color: black;
+      padding: 2px 5px;
+      border-radius: 3px;
+      box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+
+    /* Styles for Dialogue Box (remains centered by .desktop-area's align-items: center and its own margin:auto) */
+    .dialogue-box {
+      max-width: 740px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 2px outset #C0C0C0;
+      background-color: #F0F0F0;
+      font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
+      font-size: 0.9rem;
+      box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 10;
+    }
+    /* ... (rest of dialogue box and other styles remain the same as your last version) ... */
     .dialogue-title-bar { background-color: #0058A8; color: white; padding: 5px 8px; font-weight: bold; font-size: 1rem; display: flex; justify-content: space-between; align-items: center; line-height: 1.2; box-sizing: border-box; }
     .dialogue-close-button { font-family: 'Verdana', 'Arial', sans-serif; background-color: #C0C0C0; border: 1px outset white; padding: 1px 5px; font-size: 1rem; cursor: pointer; color: black; line-height: 1; text-decoration: none; user-select: none; -webkit-user-select: none; }
     .dialogue-content { padding: 20px; display: flex; align-items: flex-start; box-sizing: border-box; }
@@ -140,13 +204,40 @@ import Layout from '../layouts/Layout.astro';
     .get-help-button { appearance: none; -webkit-appearance: none; background-color: #E1E1E1; border: 1px outset #C0C0C0; padding: 8px 25px; font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif; font-size: 1.5rem; line-height: 1.2; color: black; text-decoration: none; cursor: pointer; display: inline-block; user-select: none; -webkit-user-select: none; }
     .get-help-button:active { border-style: inset; padding: 9px 24px 7px 26px; }
 
+    /* --- Media Query for Smaller Screens --- */
     @media (max-width: 600px) {
-      .desktop-area { padding: 10px; padding-bottom: 55px; }
-      .desktop-icons-container { gap: 15px; margin-bottom: 20px; padding-left: 5px; justify-content: space-around; }
-      .desktop-icon { width: 95px; font-size: 11px; padding: 4px; margin-bottom: 10px; }
-      .desktop-icon img { width: 48px; height: 48px; margin-bottom: 4px; }
-      .desktop-icon span { padding: 1px 3px; line-height: 1.2; }
-      .dialogue-box { font-size: 0.85rem; margin: 15px 10px; width: calc(100% - 20px); }
+      .desktop-area {
+        padding: 10px 0; /* Reduce horizontal padding for mobile */
+        padding-bottom: 55px;
+      }
+      .desktop-icons-container {
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-left: 10px; /* Adjusted for mobile */
+        padding-right: 10px; /* Adjusted for mobile */
+        justify-content: flex-start; /* Keep flex-start for mobile, allow wrapping */
+      }
+      .desktop-icon {
+        width: 95px;
+        font-size: 11px;
+        padding: 4px;
+        margin-bottom: 10px;
+      }
+      .desktop-icon img {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 4px;
+      }
+      .desktop-icon span {
+        padding: 1px 3px;
+        line-height: 1.2;
+      }
+
+      .dialogue-box {
+        font-size: 0.85rem;
+        margin: 15px 10px;
+        width: calc(100% - 20px);
+      }
       .dialogue-title-bar { padding: 4px 6px; font-size: 0.9rem; }
       .dialogue-close-button { font-size: 0.9rem; padding: 0px 3px; }
       .dialogue-content { padding: 15px; flex-direction: column; align-items: center; }
@@ -158,84 +249,27 @@ import Layout from '../layouts/Layout.astro';
 
     /* BSOD Screen Styles */
     .bsod-screen {
-      /* display: none; -- Initial hiding is now done by inline style on the element */
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh; /* Covers full viewport */
-      background-color: #0000AA;
-      color: white;
-      font-family: 'Lucida Console', 'Courier New', Courier, monospace;
-      font-size: 16px;
-      padding: 20px; /* Padding around the content area */
-      box-sizing: border-box;
-      z-index: 99999;
-      text-align: left;
-      overflow-y: auto; /* Allow scrolling if content is too long */
-      cursor: pointer;
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background-color: #0000AA; color: white;
+      font-family: 'Lucida Console', 'Courier New', Courier, monospace; font-size: 16px;
+      padding: 20px; box-sizing: border-box; z-index: 99999;
+      text-align: left; overflow-y: auto; cursor: pointer;
     }
-    .bsod-content-wrapper {
-      max-width: 800px; /* Max width for the text content */
-      margin: 0 auto; /* Horizontally center the content wrapper */
-      width: 100%; /* Allow it to be responsive within padding */
-    }
-    .bsod-title {
-      font-size: 1.5em;
-      font-weight: bold;
-      margin-top: 0; /* Remove default top margin if padding on bsod-screen is enough */
-      margin-bottom: 1.5em;
-      text-align: center;
-    }
-    .bsod-screen p {
-      margin-bottom: 1em;
-      line-height: 1.4;
-    }
-    .bsod-contact-info {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 1.5em;
-      font-size: 1.1em;
-    }
-    .bsod-contact-info li {
-      margin-bottom: 0.5em;
-    }
-    .bsod-contact-info a {
-      color: #FFFF80;
-      text-decoration: underline;
-    }
-    .bsod-contact-info a:hover {
-      color: #FFFFFF;
-    }
-    .bsod-tech-info {
-      font-size: 0.9em;
-      margin-top: 2.5em;
-      word-break: break-all;
-    }
-    .bsod-restart-info {
-      margin-top: 3em;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.1em;
-    }
+    .bsod-content-wrapper { max-width: 800px; margin: 0 auto; width: 100%; }
+    .bsod-title { font-size: 1.5em; font-weight: bold; margin-top: 0; margin-bottom: 1.5em; text-align: center;}
+    .bsod-screen p { margin-bottom: 1em; line-height: 1.4; }
+    .bsod-contact-info { list-style: none; padding-left: 0; margin-bottom: 1.5em; font-size: 1.1em; }
+    .bsod-contact-info li { margin-bottom: 0.5em; }
+    .bsod-contact-info a { color: #FFFF80; text-decoration: underline; }
+    .bsod-contact-info a:hover { color: #FFFFFF; }
+    .bsod-tech-info { font-size: 0.9em; margin-top: 2.5em; word-break: break-all; }
+    .bsod-restart-info { margin-top: 3em; text-align: center; font-weight: bold; font-size: 1.1em; }
 
     @media (max-width: 600px) {
-      .bsod-screen {
-        font-size: 14px;
-        padding: 15px; /* Reduced padding on smaller screens */
-      }
-      .bsod-title {
-        font-size: 1.3em;
-        margin-bottom: 1em;
-      }
-      .bsod-contact-info {
-        font-size: 1em;
-        margin-bottom: 1em;
-      }
-      .bsod-restart-info {
-        margin-top: 2em;
-        font-size: 1em;
-      }
+      .bsod-screen { font-size: 14px; padding: 15px; }
+      .bsod-title { font-size: 1.3em; margin-bottom: 1em; }
+      .bsod-contact-info { font-size: 1em; margin-bottom: 1em; }
+      .bsod-restart-info { font-size: 1em; margin-top: 2em; }
     }
   </style>
 </Layout>
@@ -249,8 +283,7 @@ import Layout from '../layouts/Layout.astro';
     if (closeButton && bsodScreen) {
       closeButton.addEventListener('click', function(event) {
         event.preventDefault();
-        bsodScreen.style.display = 'block'; // UPDATED: Show as block for normal flow
-        // Removed flex centering for bsodScreen itself
+        bsodScreen.style.display = 'block';
 
         if (dialogueBox) {
           dialogueBox.style.display = 'none';
