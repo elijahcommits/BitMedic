@@ -51,7 +51,6 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     <img src="/BitMedic/icons/newsletter_icon.svg" alt="Newsletter" class="taskbar-button-icon" />
     <span class="taskbar-button-text">Newsletter</span>
   </a>
-  {/* UPDATED TEXT AND ALT ATTRIBUTE BELOW */}
   <a href="#" class="taskbar-button">
     <img src="/BitMedic/icons/form_icon.svg" alt="Contact Form" class="taskbar-button-icon" />
     <span class="taskbar-button-text">Contact Form</span>
@@ -68,15 +67,15 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 40px;
+    height: 48px; /* UPDATED: Increased from 40px */
     background-color: #c0c0c0;
     border-top: 2px solid #ffffff;
     box-shadow: inset 0 1px 1px #dfdfdf;
     display: flex;
     align-items: center;
-    padding: 0 5px;
+    padding: 0 6px; /* UPDATED: Slightly increased padding */
     font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-    font-size: 15px;
+    font-size: 16px; /* UPDATED: Increased from 15px */
     color: #000000;
     z-index: 1000;
     box-sizing: border-box;
@@ -101,7 +100,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     border-width: 2px;
     border-style: outset;
     border-color: #3b8bcd #003366 #003366 #3b8bcd;
-    padding: 0 12px;
+    padding: 0 14px; /* UPDATED */
     margin: 0;
     margin-left: 3px;
     display: flex;
@@ -110,11 +109,11 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     cursor: pointer;
     font-weight: bold;
     font-family: inherit;
-    font-size: inherit;
+    font-size: inherit; /* Will be 16px */
     color: #ffffff;
-    height: 32px;
+    height: 38px;  /* UPDATED: Increased to fit 48px toolbar */
     box-sizing: border-box;
-    line-height: 30px;
+    line-height: 36px; /* UPDATED */
     white-space: nowrap;
     user-select: none;
     -webkit-user-select: none;
@@ -128,7 +127,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
 
   .start-button:active {
     border-style: inset;
-    padding: 1px 11px 0px 13px;
+    padding: 1px 13px 0px 15px; /* UPDATED */
     background-color: #004c8c;
   }
 
@@ -141,10 +140,10 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     padding: 0;
   }
 
-  .start-icon { /* Icon for the main Start/BitMedic button */
-    width: 22px;
-    height: 22px;
-    margin-right: 7px;
+  .start-icon {
+    width: 24px; /* UPDATED */
+    height: 24px; /* UPDATED */
+    margin-right: 8px; /* UPDATED */
     object-fit: contain;
     display: inline-block;
     vertical-align: middle;
@@ -156,15 +155,15 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     position: absolute;
     bottom: 100%;
     left: 0;
-    width: 280px;
+    width: 300px; /* UPDATED */
     background-color: #c0c0c0;
     border-width: 2px;
     border-style: outset;
     border-color: #f0f0f0 #808080 #808080 #f0f0f0;
     box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-    padding: 4px;
+    padding: 5px; /* UPDATED */
     z-index: 1001;
-    font-size: 15px;
+    font-size: 16px; /* UPDATED */
     color: #000000;
     text-align: left;
     box-sizing: border-box;
@@ -192,7 +191,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   .start-menu li a {
     display: flex;
     align-items: center;
-    padding: 7px 10px 7px 8px;
+    padding: 8px 12px 8px 10px; /* UPDATED */
     text-decoration: none;
     color: #000000;
     white-space: nowrap;
@@ -201,9 +200,9 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   }
 
   .start-menu-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
+    width: 22px; /* UPDATED */
+    height: 22px; /* UPDATED */
+    margin-right: 10px; /* UPDATED */
     object-fit: contain;
     vertical-align: middle;
   }
@@ -217,7 +216,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     border: 0;
     border-top: 1px solid #808080;
     border-bottom: 1px solid #ffffff;
-    margin: 5px 1px;
+    margin: 6px 1px; /* UPDATED */
     height: 0px;
     box-sizing: border-box;
   }
@@ -225,21 +224,21 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   .taskbar-button {
     display: flex;
     align-items: center;
-    height: 30px;
+    height: 36px; /* UPDATED */
     background-color: #c0c0c0;
     border-width: 2px;
     border-style: outset;
     border-color: #f0f0f0 #808080 #808080 #f0f0f0;
-    padding: 0 8px;
-    margin-left: 4px;
+    padding: 0 10px; /* UPDATED */
+    margin-left: 5px; /* UPDATED */
     text-decoration: none;
     color: #000000;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 15px; /* UPDATED */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 180px;
+    max-width: 200px; /* UPDATED */
     box-sizing: border-box;
     user-select: none;
     -webkit-user-select: none;
@@ -261,9 +260,9 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   }
 
   .taskbar-button-icon {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
+    width: 18px; /* UPDATED */
+    height: 18px; /* UPDATED */
+    margin-right: 6px; /* UPDATED */
     object-fit: contain;
     filter: brightness(1);
   }
@@ -277,39 +276,70 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
 
   .clock-container {
     margin-left: auto;
-    padding: 0 10px;
-    height: 32px;
+    padding: 0 12px; /* UPDATED */
+    height: 38px; /* UPDATED */
     border-width: 2px;
     border-style: inset;
     border-color: #808080 #f0f0f0 #f0f0f0 #808080;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 80px;
+    min-width: 90px; /* UPDATED */
     box-sizing: border-box;
     margin-right: 3px;
-    line-height: 30px;
+    line-height: 36px; /* UPDATED */
   }
   .clock-time {
     font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-    font-size: 15px;
+    font-size: 16px; /* UPDATED */
     color: #000000;
     line-height: 1;
   }
 
+  /* --- Media Query for Smaller Screens --- */
   @media (max-width: 600px) {
-    .windows-toolbar { height: 32px; font-size: 13px; padding: 0 3px; }
-    .start-button { height: 26px; padding: 0 8px; margin-left: 2px; line-height: 24px; }
-    .start-button:active { padding: 1px 7px 0px 9px; }
-    .start-icon { width: 16px; height: 16px; margin-right: 5px; }
-    .start-menu { width: 200px; font-size: 13px; padding: 2px; }
-    .start-menu li a { padding: 5px 8px; }
-    .start-menu-icon { width: 16px; height: 16px; margin-right: 6px; }
-    .start-menu li.divider hr { margin: 3px 1px; }
-    .taskbar-button { height: 24px; padding: 0 5px; font-size: 12px; margin-left: 3px; max-width: 120px; }
-    .taskbar-button-icon { width: 14px; height: 14px; margin-right: 3px; }
-    .clock-container { height: 26px; padding: 0 6px; min-width: 65px; margin-right: 2px; line-height: 24px; }
-    .clock-time { font-size: 13px; }
+    .windows-toolbar {
+      height: 40px; /* Keep it a bit larger on mobile too, was 32px */
+      font-size: 14px; /* Was 13px */
+    }
+    .start-button {
+      height: 32px; /* Was 26px */
+      padding: 0 10px; /* Was 0 8px */
+      line-height: 30px; /* Was 24px */
+    }
+    .start-icon {
+      width: 18px; /* Was 16px */
+      height: 18px; /* Was 16px */
+      margin-right: 6px; /* Was 5px */
+    }
+    .start-menu {
+      width: 220px; /* Was 200px */
+      font-size: 14px; /* Was 13px */
+    }
+    .start-menu li a {
+      padding: 6px 10px; /* Was 5px 8px */
+    }
+    .start-menu-icon {
+      width: 18px; /* Was 16px */
+      height: 18px; /* Was 16px */
+    }
+    .taskbar-button {
+      height: 30px; /* Was 24px */
+      font-size: 13px; /* Was 12px */
+      max-width: 130px; /* Was 120px */
+    }
+    .taskbar-button-icon {
+      width: 15px; /* Was 14px */
+      height: 15px; /* Was 14px */
+    }
+    .clock-container {
+      height: 32px; /* Was 26px */
+      min-width: 70px; /* Was 65px */
+      line-height: 30px; /* Was 24px */
+    }
+    .clock-time {
+      font-size: 14px; /* Was 13px */
+    }
   }
 </style>
 
