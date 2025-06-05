@@ -22,6 +22,7 @@ import Layout from '../layouts/Layout.astro';
         <img src="/BitMedic/icons/merch_icon.svg" alt="BitMedic Merch" />
         <span>Merch</span>
       </a>
+      {/* Recycle Bin - for now, not linking anywhere specific, but styled as an icon */}
       <div class="desktop-icon">
         <img src="/BitMedic/icons/recycle_bin_icon.svg" alt="Recycle Bin" />
         <span>Recycle Bin</span>
@@ -31,6 +32,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="dialogue-box" style="margin: 20px auto;">
         <div class="dialogue-title-bar">
             <span>BitMedic to the Rescue!</span>
+            {/* Ensure this 'X' button has the class .dialogue-close-button for the JS */}
             <a href="#" class="dialogue-close-button" aria-label="Trigger BSOD">
                X
             </a>
@@ -52,10 +54,10 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </div>
 
-    {/* BSOD Screen HTML - Added inline style="display:none;" for robust hiding */}
+    {/* BSOD Screen HTML - inline style="display:none;" ensures it's hidden initially */}
     <div id="bsod-screen" class="bsod-screen" style="display:none;">
       <div class="bsod-content-wrapper">
-        <p class="bsod-title">A "Problem" Has Been Detected<br>(and BitMedic is here for it!)</p>
+        <p class="bsod-title">A "Problem" Has Been Detected<br /> (and BitMedic is here for it!)</p>
         <p>If this is the first time you've seen this screen, don't panic! It's just our way of saying we're serious about tackling PC issues... with a bit of fun.</p>
         <p>Your PC hasn't actually crashed. This is a simulation!</p>
 
@@ -95,7 +97,7 @@ import Layout from '../layouts/Layout.astro';
       min-height: calc(var(--vh, 1vh) * 100);
       margin: 0;
       padding-top: 25px;
-      padding-bottom: 60px;
+      /* padding-bottom removed from body, handled by .desktop-area */
       user-select: none;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -104,7 +106,6 @@ import Layout from '../layouts/Layout.astro';
     @media (max-width: 600px) {
       body {
         padding-top: 15px;
-        padding-bottom: 50px;
       }
     }
   </style>
@@ -113,7 +114,7 @@ import Layout from '../layouts/Layout.astro';
   <style>
     .desktop-area {
       padding: 20px;
-      padding-bottom: 60px;
+      padding-bottom: 60px; /* For 40px toolbar + 20px margin */
       width: 100%;
       box-sizing: border-box;
       display: flex;
@@ -140,7 +141,7 @@ import Layout from '../layouts/Layout.astro';
     .get-help-button:active { border-style: inset; padding: 9px 24px 7px 26px; }
 
     @media (max-width: 600px) {
-      .desktop-area { padding: 10px; padding-bottom: 50px; }
+      .desktop-area { padding: 10px; padding-bottom: 55px; }
       .desktop-icons-container { gap: 15px; margin-bottom: 20px; padding-left: 5px; justify-content: space-around; }
       .desktop-icon { width: 95px; font-size: 11px; padding: 4px; margin-bottom: 10px; }
       .desktop-icon img { width: 48px; height: 48px; margin-bottom: 4px; }
@@ -157,31 +158,32 @@ import Layout from '../layouts/Layout.astro';
 
     /* BSOD Screen Styles */
     .bsod-screen {
-      /* display: none; /* Hidden by default via CSS class - this should be active */
+      /* display: none; -- Initial hiding is now done by inline style on the element */
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: 100vh; /* Covers full viewport */
       background-color: #0000AA;
       color: white;
       font-family: 'Lucida Console', 'Courier New', Courier, monospace;
       font-size: 16px;
-      padding: 20px;
+      padding: 20px; /* Padding around the content area */
       box-sizing: border-box;
       z-index: 99999;
       text-align: left;
-      overflow-y: auto;
+      overflow-y: auto; /* Allow scrolling if content is too long */
       cursor: pointer;
-      /* The JavaScript will toggle this, but inline style ensures initial state */
     }
     .bsod-content-wrapper {
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 800px; /* Max width for the text content */
+      margin: 0 auto; /* Horizontally center the content wrapper */
+      width: 100%; /* Allow it to be responsive within padding */
     }
     .bsod-title {
       font-size: 1.5em;
       font-weight: bold;
+      margin-top: 0; /* Remove default top margin if padding on bsod-screen is enough */
       margin-bottom: 1.5em;
       text-align: center;
     }
@@ -220,15 +222,18 @@ import Layout from '../layouts/Layout.astro';
     @media (max-width: 600px) {
       .bsod-screen {
         font-size: 14px;
-        padding: 15px;
+        padding: 15px; /* Reduced padding on smaller screens */
       }
       .bsod-title {
         font-size: 1.3em;
+        margin-bottom: 1em;
       }
       .bsod-contact-info {
         font-size: 1em;
+        margin-bottom: 1em;
       }
       .bsod-restart-info {
+        margin-top: 2em;
         font-size: 1em;
       }
     }
@@ -242,15 +247,10 @@ import Layout from '../layouts/Layout.astro';
     const dialogueBox = document.querySelector('.dialogue-box');
 
     if (closeButton && bsodScreen) {
-      // Ensure BSOD is hidden by JavaScript as well, just in case CSS takes a moment
-      // Though the inline style="display:none;" should be very effective
-      // bsodScreen.style.display = 'none'; // Re-ensure, or rely on inline style
-
       closeButton.addEventListener('click', function(event) {
         event.preventDefault();
-        bsodScreen.style.display = 'flex';
-        bsodScreen.style.alignItems = 'center'; // Vertically center content wrapper
-        bsodScreen.style.justifyContent = 'center'; // Horizontally center content wrapper
+        bsodScreen.style.display = 'block'; // UPDATED: Show as block for normal flow
+        // Removed flex centering for bsodScreen itself
 
         if (dialogueBox) {
           dialogueBox.style.display = 'none';
@@ -260,7 +260,7 @@ import Layout from '../layouts/Layout.astro';
       bsodScreen.addEventListener('click', function() {
         bsodScreen.style.display = 'none';
         if (dialogueBox) {
-          dialogueBox.style.display = 'block'; // Or its original display if it was something else
+          dialogueBox.style.display = 'block';
         }
       });
 
