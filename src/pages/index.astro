@@ -58,16 +58,16 @@ import Layout from '../layouts/Layout.astro';
 
   {/* Global styles for the body, specific to this page's desired "desktop" look */}
   <style is:global>
-    body { /* This will apply to the body tag when index.astro is the active page */
+    body {
       display: flex;
       flex-direction: column;
-      background-color: #008ACC; /* Fallback color */
+      background-color: #008ACC;
       background-image: radial-gradient(ellipse at center, #006299 0%, #008ACC 75%);
       background-repeat: no-repeat;
       background-attachment: fixed;
       min-height: 100vh;
       margin: 0;
-      padding-top: 20px;
+      padding-top: 25px; /* Adjusted padding for icon spacing */
 
       user-select: none;
       -webkit-user-select: none;
@@ -90,29 +90,29 @@ import Layout from '../layouts/Layout.astro';
     .desktop-icons-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 30px;
+      gap: 35px;      /* Adjusted gap */
+      margin-bottom: 40px; /* Adjusted space above dialogue */
       justify-content: flex-start;
       width: 100%;
       max-width: 1000px;
-      padding-left: 10px;
+      padding-left: 15px; /* Adjusted padding */
     }
 
     .desktop-icon {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 100px; /* Increased width from 90px to 100px */
+      width: 120px; /* Adjusted width for 72px image + text */
       text-align: center;
       text-decoration: none;
       color: white;
       font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-      font-size: 12px;
+      font-size: 14px; /* Text label font size */
       cursor: pointer;
-      padding: 5px;
+      padding: 8px 5px; /* Adjusted padding */
       border: 1px solid transparent;
-      /* word-break: break-word; -- Replaced by word-wrap on child span for more control */
-      margin-bottom: 10px;
+      word-wrap: break-word;
+      margin-bottom: 15px;
     }
 
     .desktop-icon:hover,
@@ -123,19 +123,17 @@ import Layout from '../layouts/Layout.astro';
     }
 
     .desktop-icon img {
-      width: 48px;
-      height: 48px;
+      width: 72px; /* Icon image width scaled back to 72px */
+      height: 72px; /* Icon image height scaled back to 72px */
       object-fit: contain;
-      margin-bottom: 5px;
+      margin-bottom: 8px; /* Adjusted space between icon and text */
     }
 
     .desktop-icon span {
       display: block;
-      line-height: 1.2;
-      min-height: 2.4em; /* Ensures space for roughly two lines */
+      line-height: 1.3;
+      min-height: 2.6em; /* Approx 2 lines for 14px font (14 * 1.3 * 2 = ~36.4px) */
       max-width: 100%;
-      word-wrap: break-word; /* Allows long words to wrap if necessary, preferred over word-break */
-      /* overflow: hidden; -- Removing this to see if text was being clipped */
     }
   </style>
 </Layout>
