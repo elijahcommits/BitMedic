@@ -12,120 +12,92 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
 		<title>BitMedic Helps!</title>
 	</head>
 	<body>
-		<slot />
+		<slot /> {/* Page content will go here, styled by index.astro */}
 		<WindowsToolbar />
 	</body>
 </html>
 
 <style is:global>
-  /* More aggressive CSS Resets for Cross-Browser Consistency */
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
+  /* Reset and Base Styles for Consistency */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%; /* Let body/html set the base font size */
-    font: inherit; /* Inherit font properties */
+    font-size: 100%;
+    font: inherit;
     vertical-align: baseline;
-    box-sizing: border-box; /* Universal box-sizing */
-  }
-
-  /* HTML5 display-role reset for older browsers */
-  article, aside, details, figcaption, figure,
-  footer, header, hgroup, menu, nav, section {
-    display: block;
   }
 
   html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
-    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif; /* Site default font */
-    scroll-behavior: smooth;
-    -moz-osx-font-smoothing: grayscale; /* Better font rendering on Firefox/Mac */
-    -webkit-font-smoothing: antialiased; /* Better font rendering on WebKit/Mac */
+    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
+    height: 100%; /* Ensure HTML takes full height for body % height to work */
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
   }
 
   body {
     width: 100%;
-    min-height: 100vh;
-    font-family: inherit; /* Inherit from html (Tahoma stack) */
+    min-height: 100%; /* Make body at least full height of html */
+    display: flex; /* Use flex to allow main content to grow */
+    flex-direction: column;
+    font-family: inherit;
     color: #000000;
-    background-color: #DDD; /* Default background, overridden by page-specific styles */
-    text-rendering: optimizeLegibility; /* Can improve kerning and ligatures */
+    background-color: #DDD; /* Default, will be overridden by index.astro */
+    text-rendering: optimizeLegibility;
+    /* No explicit height or min-height: 100vh here, as index.astro will style it.
+       This body is now a flex container for what index.astro puts in <slot />
+       and the WindowsToolbar.
+    */
   }
 
-  /* Remove list styles on ul, ol elements by default, explicitly */
+  /* Common Resets */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
   ol, ul {
     list-style: none;
   }
-
   blockquote, q {
     quotes: none;
   }
-  blockquote:before, blockquote:after,
-  q:before, q:after {
+  blockquote:before, blockquote:after, q:before, q:after {
     content: '';
     content: none;
   }
-
   table {
     border-collapse: collapse;
     border-spacing: 0;
   }
-
-  /* Make images responsive by default */
-  img,
-  picture,
-  video,
-  canvas,
-  svg {
-    display: block; /* Remove extra space below images */
+  img, picture, video, canvas, svg {
+    display: block;
     max-width: 100%;
-    height: auto; /* Maintain aspect ratio */
+    height: auto;
   }
-
-  /* Inherit fonts for inputs and buttons */
-  input,
-  button,
-  textarea,
-  select {
+  input, button, textarea, select {
     font: inherit;
     color: inherit;
-    margin: 0; /* Reset margin for form elements */
+    margin: 0;
   }
-
   button {
-    background: none; /* Remove default button backgrounds */
-    border: none;     /* Remove default button borders */
-    padding: 0;       /* Remove default button padding */
+    background: none;
+    border: none;
+    padding: 0;
     cursor: pointer;
   }
-
-  /* Ensure links have a consistent default state */
   a {
-    color: inherit; /* Inherit text color from parent by default */
-    text-decoration: none; /* Remove underlines by default */
+    color: inherit;
+    text-decoration: none;
   }
 
-  /* Remove all animations and transitions for users that prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    html:focus-within {
-      scroll-behavior: auto;
-    }
-    *,
-    *::before,
-    *::after {
+    html:focus-within { scroll-behavior: auto; }
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
