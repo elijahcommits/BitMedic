@@ -6,7 +6,6 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
 <div class="windows-toolbar">
   <div class="start-button-container">
     <button class="start-button" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Start Menu">
-      {/* === Updated Image Path Below === */}
       <img src="/BitMedic/icons/bitmedic_logo2-onlylogo_transparent.svg" alt="Start" class="start-icon" />
       Start
     </button>
@@ -27,7 +26,6 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   </div>
 </div>
 
-{/* Styles remain the same as the last version for the 40px toolbar (with the fix for menu hover gap) */}
 <style>
   .windows-toolbar {
     position: fixed;
@@ -60,7 +58,6 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-
     background-color: #c0c0c0;
     border-width: 2px;
     border-style: outset;
@@ -183,29 +180,63 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
     font-size: 15px;
   }
+
+  /* --- Media Query for Smaller Screens --- */
+  @media (max-width: 600px) {
+    .windows-toolbar {
+      height: 32px;
+      font-size: 13px;
+      padding: 0 3px;
+    }
+    .start-button {
+      height: 26px; /* calc(100% - 6px) for 32px toolbar */
+      padding: 1px 8px;
+      margin-left: 2px;
+    }
+    .start-button:active {
+      padding: 2px 7px 0px 9px;
+    }
+    .start-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+    }
+    .start-menu {
+      width: 200px; /* Make start menu narrower */
+      font-size: 13px;
+      padding: 2px;
+    }
+    .start-menu li a {
+      padding: 5px 20px 5px 10px;
+    }
+     .start-menu li.divider hr {
+      margin: 3px 1px;
+    }
+    .clock-container {
+      height: 26px; /* calc(100% - 6px) for 32px toolbar */
+      padding: 1px 6px;
+      min-width: 65px;
+      margin-right: 2px;
+    }
+    .clock-time {
+      font-size: 13px;
+    }
+  }
 </style>
 
 <script>
   function setupLiveClock() {
     const clockTimeElement = document.querySelector('.windows-toolbar .clock-container .clock-time');
-
     if (clockTimeElement) {
       function updateClock() {
         const now = new Date();
-        const timeString = now.toLocaleTimeString([], {
-          hour: '2-digit',
-          minute: '2-digit'
-        });
+        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         clockTimeElement.textContent = timeString;
       }
-
       updateClock();
       setInterval(updateClock, 1000);
-    } else {
-      // console.error("Clock time element not found for live update.");
     }
   }
-
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setupLiveClock);
   } else {

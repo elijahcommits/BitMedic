@@ -22,32 +22,30 @@ import Layout from '../layouts/Layout.astro';
         <img src="/BitMedic/icons/merch_icon.svg" alt="BitMedic Merch" />
         <span>Merch</span>
       </a>
-      {/* Recycle Bin - for now, not linking anywhere specific, but styled as an icon */}
       <div class="desktop-icon">
         <img src="/BitMedic/icons/recycle_bin_icon.svg" alt="Recycle Bin" />
         <span>Recycle Bin</span>
       </div>
     </div>
 
-    <div style="max-width: 1000px; width: 100%; box-sizing: border-box; border: 2px outset #C0C0C0; background-color: #F0F0F0; font-family: 'Tahoma', 'Geneva', sans-serif; font-size: 0.7rem; box-shadow: 5px 5px 10px rgba(0,0,0,0.3); margin: 20px auto; position: relative; z-index: 10;">
-        <div style="background-color: #0058A8; color: white; padding: 5px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+    <div class="dialogue-box" style="max-width: 1000px; width: 100%; margin: 20px auto;"> {/* Moved some styles to class, kept max-width, width, margin */}
+        <div class="dialogue-title-bar">
             <span style="margin-left: 5px;">BitMedic to the Rescue!</span>
-            <a href="https://search.brave.com/" target="_blank" rel="noopener noreferrer"
-               style="font-family: 'Verdana', 'Arial', sans-serif; background-color: #C0C0C0; border: 1px outset white; padding: 0px 4px; font-size: 14px; margin-right: 3px; cursor: pointer; color: black; line-height: 1; text-decoration: none;">
+            <a href="https://search.brave.com/" target="_blank" rel="noopener noreferrer" class="dialogue-close-button">
                X
             </a>
         </div>
-        <div style="padding: 20px; display: flex; align-items: flex-start;">
-            <div style="margin-right: 15px; font-size: 30px; color: #FFCC00;">
+        <div class="dialogue-content">
+            <div class="dialogue-icon">
                 ⚠️
             </div>
-            <div style="flex-grow: 1;">
-                <p style="font-size: 1rem; margin-top: 0; margin-bottom: 20px; line-height: 1.4; color: black;">
+            <div class="dialogue-text-area">
+                <p>
                     Our dedicated experts are ready to tackle whatever’s causing you grief, all remotely!<br><br>No need to let anyone into your home or haul your computer into some shop.<br>You reach out, we connect, your computer runs better.<br><br><em>Just like that.</em>
                 </p>
-                <div style="text-align: center;">
-                    {/* TODO: Update this "Get Help!" link later! */}
-                    <a href="https://google.com" target="_blank" rel="noopener noreferrer" style="background-color: #E1E1E1; border: 1px outset #C0C0C0; padding: 5px 20px; font-family: 'Tahoma', 'Geneva', sans-serif; font-size: 1.5rem; color: black; text-decoration: none; cursor: pointer; display: inline-block;">
+                <div class="dialogue-button-container">
+                    {/* "Get Help!" button now uses a class */}
+                    <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="get-help-button">
                         Get Help!
                     </a>
                 </div>
@@ -56,7 +54,6 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </main>
 
-  {/* Global styles for the body, specific to this page's desired "desktop" look */}
   <style is:global>
     body {
       display: flex;
@@ -70,16 +67,23 @@ import Layout from '../layouts/Layout.astro';
       min-height: 100vh;
       margin: 0;
       padding-top: 25px;
-      padding-bottom: 60px; /* Added: Toolbar height (40px) + 20px desired margin */
+      padding-bottom: 60px; /* Base padding for 40px toolbar + 20px margin */
 
       user-select: none;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
     }
+
+    /* Responsive body padding for smaller toolbar */
+    @media (max-width: 600px) {
+      body {
+        padding-top: 15px;
+        padding-bottom: 50px; /* For 32px toolbar + ~18px margin */
+      }
+    }
   </style>
 
-  {/* Scoped styles for index.astro page elements */}
   <style>
     .desktop-area {
       padding: 20px;
@@ -88,7 +92,7 @@ import Layout from '../layouts/Layout.astro';
       display: flex;
       flex-direction: column;
       align-items: center;
-      flex-grow: 1; /* Allows main area to grow and push padding to bottom */
+      flex-grow: 1;
     }
 
     .desktop-icons-container {
@@ -136,12 +140,128 @@ import Layout from '../layouts/Layout.astro';
       line-height: 1.3;
       max-width: 100%;
       word-wrap: break-word;
-
       background-color: white;
       color: black;
       padding: 2px 5px;
       border-radius: 3px;
       box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    }
+
+    /* Styles for Dialogue Box (moved from inline) */
+    .dialogue-box {
+      box-sizing: border-box;
+      border: 2px outset #C0C0C0;
+      background-color: #F0F0F0;
+      font-family: 'Tahoma', 'Geneva', sans-serif;
+      font-size: 0.7rem; /* Base for dialogue, p tags override */
+      box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 10;
+    }
+    .dialogue-title-bar {
+      background-color: #0058A8;
+      color: white;
+      padding: 5px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dialogue-close-button {
+      font-family: 'Verdana', 'Arial', sans-serif;
+      background-color: #C0C0C0;
+      border: 1px outset white;
+      padding: 0px 4px;
+      font-size: 14px; /* Consider making this relative or smaller on mobile */
+      margin-right: 3px;
+      cursor: pointer;
+      color: black;
+      line-height: 1;
+      text-decoration: none;
+    }
+    .dialogue-content {
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .dialogue-icon {
+      margin-right: 15px;
+      font-size: 30px; /* This is an emoji, consider responsive size */
+      color: #FFCC00;
+    }
+    .dialogue-text-area {
+      flex-grow: 1;
+    }
+    .dialogue-text-area p {
+      font-size: 1rem; /* Overrides 0.7rem from .dialogue-box */
+      margin-top: 0;
+      margin-bottom: 20px;
+      line-height: 1.4;
+      color: black;
+    }
+    .dialogue-button-container {
+      text-align: center;
+    }
+    .get-help-button {
+      background-color: #E1E1E1;
+      border: 1px outset #C0C0C0;
+      padding: 5px 20px;
+      font-family: 'Tahoma', 'Geneva', sans-serif;
+      font-size: 1.5rem;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    /* --- Media Query for Smaller Screens --- */
+    @media (max-width: 600px) {
+      .desktop-area {
+        padding: 10px;
+      }
+      .desktop-icons-container {
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-left: 5px;
+        justify-content: space-around; /* Better for fewer icons on small screens */
+      }
+      .desktop-icon {
+        width: 80px; /* Smaller icon container */
+        font-size: 11px; /* Smaller text */
+        padding: 4px;
+        margin-bottom: 10px;
+      }
+      .desktop-icon img {
+        width: 48px; /* Smaller icon image */
+        height: 48px;
+        margin-bottom: 4px;
+      }
+      .desktop-icon span {
+        padding: 1px 3px;
+        line-height: 1.2;
+      }
+
+      .dialogue-content {
+        padding: 15px;
+        flex-direction: column; /* Stack icon and text on small screens */
+        align-items: center;
+      }
+      .dialogue-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+        font-size: 24px; /* Slightly smaller emoji */
+      }
+      .dialogue-text-area p {
+        font-size: 0.9rem; /* Slightly smaller paragraph text */
+        text-align: left; /* Ensure text is readable */
+      }
+      .get-help-button {
+        font-size: 1.2rem; /* Smaller button text */
+        padding: 4px 15px;
+      }
+      .dialogue-close-button {
+        font-size: 12px; /* Smaller close button */
+      }
     }
   </style>
 </Layout>
