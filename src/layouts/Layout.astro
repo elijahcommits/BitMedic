@@ -42,7 +42,7 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
   }
 
   html {
-    font-size: 100%; /* Establishes a base for rem units */
+    font-size: 100%;
     font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
@@ -55,20 +55,21 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
   body {
     width: 100%;
     min-height: 100%;
-    font-family: inherit; /* Inherit from html */
+    font-family: inherit;
     color: #000000;
-    background-color: #DDD; /* Default, page can override */
+    background-color: #DDD;
     text-rendering: optimizeLegibility;
     display: flex;
     flex-direction: column;
   }
 
-  /* Reset for many common elements to inherit font, but NOT for strong, em, b, i initially */
+  /* Reset for many common elements to inherit font properties.
+     NOTE: strong, em, b, i are handled separately below to ensure their styles. */
   div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
   del, dfn, img, ins, kbd, q, s, samp,
-  small, strike, sub, sup, tt, var, /* Removed strong, em, b, u, i from this line */
+  small, strike, sub, sup, tt, var,
   center,
   dl, dt, dd, ol, ul, li,
   fieldset, form, label, legend,
@@ -89,7 +90,7 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
 
   /* Explicitly set default styles for semantic text elements */
   strong, b {
-    font-weight: bolder; /* Use 'bolder' as it's a common browser default relative to parent */
+    font-weight: bolder;
   }
 
   em, i {
@@ -111,23 +112,23 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     border-collapse: collapse;
     border-spacing: 0;
   }
-  img, picture, video, canvas, svg {
+  img, picture, video, canvas, svg { /* base svg styling */
     display: block;
     max-width: 100%;
     height: auto;
   }
   input, button, textarea, select {
-    font: inherit; /* Ensure form elements inherit font too */
+    font: inherit;
     color: inherit;
-    margin: 0; /* Reset their margins */
+    margin: 0;
   }
-  button { /* Basic button reset */
+  button {
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
   }
-  a { /* Basic link reset */
+  a {
     color: inherit;
     text-decoration: none;
   }
