@@ -22,15 +22,16 @@ import Layout from '../layouts/Layout.astro';
         <img src="/BitMedic/icons/merch_icon.svg" alt="BitMedic Merch" />
         <span>Merch</span>
       </a>
+      {/* Recycle Bin - for now, not linking anywhere specific, but styled as an icon */}
       <div class="desktop-icon">
         <img src="/BitMedic/icons/recycle_bin_icon.svg" alt="Recycle Bin" />
         <span>Recycle Bin</span>
       </div>
     </div>
 
-    <div class="dialogue-box">
+    <div class="dialogue-box" style="max-width: 1000px; width: 100%; margin: 20px auto;">
         <div class="dialogue-title-bar">
-            <span>BitMedic to the Rescue!</span> {/* Removed margin-left as flexbox handles spacing */}
+            <span>BitMedic to the Rescue!</span>
             <a href="https://search.brave.com/" target="_blank" rel="noopener noreferrer" class="dialogue-close-button">
                X
             </a>
@@ -67,6 +68,7 @@ import Layout from '../layouts/Layout.astro';
       margin: 0;
       padding-top: 25px;
       padding-bottom: 60px;
+
       user-select: none;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -132,7 +134,7 @@ import Layout from '../layouts/Layout.astro';
       height: 72px;
       object-fit: contain;
       margin-bottom: 8px;
-      box-sizing: border-box; /* Just in case */
+      box-sizing: border-box;
     }
 
     .desktop-icon span {
@@ -150,14 +152,12 @@ import Layout from '../layouts/Layout.astro';
 
     /* Styles for Dialogue Box */
     .dialogue-box {
-      max-width: 1000px;
-      width: 100%;
-      margin: 20px auto; /* Centers it if desktop-area doesn't align-items: center */
+      /* max-width and width are inline for this specific instance */
       box-sizing: border-box;
       border: 2px outset #C0C0C0;
       background-color: #F0F0F0;
       font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-      font-size: 0.8rem; /* Slightly larger base for dialogue box */
+      font-size: 0.8rem;
       box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
       position: relative;
       z-index: 10;
@@ -165,23 +165,23 @@ import Layout from '../layouts/Layout.astro';
     .dialogue-title-bar {
       background-color: #0058A8;
       color: white;
-      padding: 5px 8px; /* Added horizontal padding */
+      padding: 5px 8px;
       font-weight: bold;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      line-height: 1.2; /* Ensure consistent line height */
+      line-height: 1.2;
       box-sizing: border-box;
     }
     .dialogue-close-button {
       font-family: 'Verdana', 'Arial', sans-serif;
       background-color: #C0C0C0;
       border: 1px outset white;
-      padding: 1px 5px; /* Adjusted padding */
+      padding: 1px 5px;
       font-size: 14px;
       cursor: pointer;
       color: black;
-      line-height: 1; /* Keep tight for the 'X' */
+      line-height: 1;
       text-decoration: none;
       user-select: none;
       -webkit-user-select: none;
@@ -196,12 +196,12 @@ import Layout from '../layouts/Layout.astro';
       margin-right: 15px;
       font-size: 30px;
       color: #FFCC00;
-      line-height: 1; /* Align emoji better */
+      line-height: 1;
     }
     .dialogue-text-area {
       flex-grow: 1;
     }
-    .dialogue-paragraph { /* Added class for more specific styling */
+    .dialogue-paragraph {
       font-size: 1rem;
       margin-top: 0;
       margin-bottom: 20px;
@@ -210,17 +210,17 @@ import Layout from '../layouts/Layout.astro';
     }
     .dialogue-button-container {
       text-align: center;
-      margin-top: 10px; /* Added margin */
+      margin-top: 10px;
     }
     .get-help-button {
-      appearance: none; /* Reset button appearance */
+      appearance: none;
       -webkit-appearance: none;
       background-color: #E1E1E1;
       border: 1px outset #C0C0C0;
-      padding: 8px 25px; /* Slightly larger padding */
+      padding: 8px 25px;
       font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
       font-size: 1.5rem;
-      line-height: 1.2; /* Added line height */
+      line-height: 1.2;
       color: black;
       text-decoration: none;
       cursor: pointer;
@@ -230,9 +230,8 @@ import Layout from '../layouts/Layout.astro';
     }
     .get-help-button:active {
       border-style: inset;
-      padding: 9px 24px 7px 26px; /* Pressed effect */
+      padding: 9px 24px 7px 26px;
     }
-
 
     /* --- Media Query for Smaller Screens --- */
     @media (max-width: 600px) {
@@ -240,13 +239,13 @@ import Layout from '../layouts/Layout.astro';
         padding: 10px;
       }
       .desktop-icons-container {
-        gap: 15px;
+        gap: 15px; /* Maintain smaller gap */
         margin-bottom: 20px;
         padding-left: 5px;
         justify-content: space-around;
       }
       .desktop-icon {
-        width: 80px;
+        width: 95px; /* Increased from 80px to 95px */
         font-size: 11px;
         padding: 4px;
         margin-bottom: 10px;
@@ -257,12 +256,12 @@ import Layout from '../layouts/Layout.astro';
         margin-bottom: 4px;
       }
       .desktop-icon span {
-        padding: 1px 3px;
-        line-height: 1.2;
+        padding: 1px 3px; /* Keep small padding for small font */
+        line-height: 1.2; /* Keep tighter line height for small font */
       }
 
       .dialogue-box {
-        font-size: 0.75rem; /* Slightly smaller base for dialogue on mobile */
+        font-size: 0.75rem;
       }
       .dialogue-title-bar {
         padding: 4px 6px;
