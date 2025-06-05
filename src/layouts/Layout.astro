@@ -10,7 +10,6 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
 		<link rel="icon" type="image/svg+xml" href="/BitMedic/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>BitMedic Helps!</title>
-    {/* Script to calculate and set viewport height unit */}
     <script is:inline>
       const setVhUnit = () => {
         if (typeof window !== 'undefined') {
@@ -18,9 +17,7 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
           document.documentElement.style.setProperty('--vh', `${vh}px`);
         }
       };
-      // Set on initial load
       setVhUnit();
-      // Set on resize and orientation change
       if (typeof window !== 'undefined') {
         window.addEventListener('resize', setVhUnit);
         window.addEventListener('orientationchange', setVhUnit);
@@ -34,7 +31,7 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
 </html>
 
 <style is:global>
-  /* Reset and Base Styles for Consistency */
+  /* Consistent Box Sizing & Base Resets */
   *,
   *::before,
   *::after {
@@ -42,37 +39,64 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
   }
 
   html {
+    font-size: 100%; /* Establishes a base for rem units */
+    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
-    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-    height: 100%; /* Important for body min-height: 100% to work as expected */
+    height: 100%;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
   }
 
   body {
     width: 100%;
-    min-height: 100%; /* Takes full height of html element */
-    /* min-height: 100vh; or min-height: calc(var(--vh, 1vh) * 100); will be set in index.astro */
+    min-height: 100%;
+    font-family: inherit; /* Inherit from html */
+    color: #000000;
+    background-color: #DDD; /* Default, page can override */
+    text-rendering: optimizeLegibility;
     display: flex;
     flex-direction: column;
-    font-family: inherit;
-    color: #000000;
-    background-color: #DDD;
-    text-rendering: optimizeLegibility;
   }
 
-  /* Common Resets */
+  /* Reset for many common elements to inherit font, but NOT for strong, em, b, i initially */
+  div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, img, ins, kbd, q, s, samp,
+  small, strike, sub, sup, tt, var, /* Removed strong, em, b, u, i from this line */
+  center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    font: inherit;
+    vertical-align: baseline;
+  }
+
+  /* HTML5 display-role reset */
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
+
+  /* Explicitly set default styles for semantic text elements */
+  strong, b {
+    font-weight: bolder; /* Use 'bolder' as it's a common browser default relative to parent */
+  }
+
+  em, i {
+    font-style: italic;
+  }
+
+  /* Other common resets */
   ol, ul {
     list-style: none;
   }
@@ -93,17 +117,17 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     height: auto;
   }
   input, button, textarea, select {
-    font: inherit;
+    font: inherit; /* Ensure form elements inherit font too */
     color: inherit;
-    margin: 0;
+    margin: 0; /* Reset their margins */
   }
-  button {
+  button { /* Basic button reset */
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
   }
-  a {
+  a { /* Basic link reset */
     color: inherit;
     text-decoration: none;
   }
