@@ -54,6 +54,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </main>
 
+  {/* Global styles for the body, specific to this page's desired "desktop" look */}
   <style is:global>
     body {
       display: flex;
@@ -67,7 +68,7 @@ import Layout from '../layouts/Layout.astro';
       min-height: 100vh;
       margin: 0;
       padding-top: 25px;
-      padding-bottom: 60px;
+      /* padding-bottom: 60px; -- REMOVED FROM BODY */
 
       user-select: none;
       -webkit-user-select: none;
@@ -78,14 +79,16 @@ import Layout from '../layouts/Layout.astro';
     @media (max-width: 600px) {
       body {
         padding-top: 15px;
-        padding-bottom: 50px;
+        /* padding-bottom: 50px; -- REMOVED FROM BODY (Responsive part) */
       }
     }
   </style>
 
+  {/* Scoped styles for index.astro page elements */}
   <style>
     .desktop-area {
-      padding: 20px;
+      padding: 20px; /* Existing top, left, right padding */
+      padding-bottom: 60px; /* ADDED: For 40px toolbar + 20px margin */
       width: 100%;
       box-sizing: border-box;
       display: flex;
@@ -236,16 +239,17 @@ import Layout from '../layouts/Layout.astro';
     /* --- Media Query for Smaller Screens --- */
     @media (max-width: 600px) {
       .desktop-area {
-        padding: 10px;
+        padding: 10px; /* This will override horizontal padding */
+        padding-bottom: 50px; /* ADDED HERE: For 32px toolbar + ~18px margin (Responsive) */
       }
       .desktop-icons-container {
-        gap: 15px; /* Maintain smaller gap */
+        gap: 15px;
         margin-bottom: 20px;
         padding-left: 5px;
         justify-content: space-around;
       }
       .desktop-icon {
-        width: 95px; /* Increased from 80px to 95px */
+        width: 95px;
         font-size: 11px;
         padding: 4px;
         margin-bottom: 10px;
@@ -256,8 +260,8 @@ import Layout from '../layouts/Layout.astro';
         margin-bottom: 4px;
       }
       .desktop-icon span {
-        padding: 1px 3px; /* Keep small padding for small font */
-        line-height: 1.2; /* Keep tighter line height for small font */
+        padding: 1px 3px;
+        line-height: 1.2;
       }
 
       .dialogue-box {
