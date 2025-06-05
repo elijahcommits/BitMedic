@@ -1,7 +1,9 @@
 ---
 // src/components/WindowsToolbar.astro
-// We no longer need buildTime for the clock display here,
-// as the client-side script will handle it.
+
+// For the clock - this will be static (time of the last site build).
+// For a live, updating clock, client-side JavaScript would be needed.
+const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 ---
 
 <div class="windows-toolbar">
@@ -23,12 +25,10 @@
   </div>
 
   <div class="clock-container">
-    {/* The span is now initially empty; JavaScript will populate it */}
-    <span class="clock-time"></span>
+    <span class="clock-time">{buildTime}</span> {/* This will be static; a live clock would need client-side JS */}
   </div>
 </div>
 
-{/* Styles remain the same as the last version for the 40px toolbar */}
 <style>
   .windows-toolbar {
     position: fixed;
@@ -113,7 +113,8 @@
   .start-menu {
     display: none;
     position: absolute;
-    bottom: calc(100% + 3px);
+    /* MODIFIED LINE BELOW: Removed the gap */
+    bottom: 100%; /* Positions the bottom of the menu at the top of its container */
     left: 0;
     width: 280px;
     background-color: #c0c0c0;
@@ -127,9 +128,10 @@
     text-align: left;
   }
 
+  /* Show menu on hover/focus over the container/button */
   .start-button-container:hover .start-menu,
-  .start-button:focus + .start-menu,
-  .start-menu:hover {
+  .start-button:focus + .start-menu, /* For keyboard accessibility */
+  .start-menu:hover { /* Keep menu open when hovering menu itself */
     display: block;
   }
 
@@ -186,7 +188,8 @@
   }
 </style>
 
-{/* Add this client-side script for the live clock */}
+{/* Client-side script for the live clock - This was added in a previous step. */}
+{/* If you removed it, make sure it's here. */}
 <script>
   function setupLiveClock() {
     const clockTimeElement = document.querySelector('.windows-toolbar .clock-container .clock-time');
@@ -194,7 +197,6 @@
     if (clockTimeElement) {
       function updateClock() {
         const now = new Date();
-        // Format to HH:MM (e.g., 09:05 PM or 21:05 depending on locale)
         const timeString = now.toLocaleTimeString([], {
           hour: '2-digit',
           minute: '2-digit'
@@ -202,18 +204,16 @@
         clockTimeElement.textContent = timeString;
       }
 
-      updateClock(); // Set the time immediately when the script runs
-      setInterval(updateClock, 1000); // Update the time every second
+      updateClock();
+      setInterval(updateClock, 1000);
     } else {
-      console.error("Clock time element not found for live update.");
+      // console.error("Clock time element not found for live update."); // Optional: for debugging
     }
   }
 
-  // Ensure the DOM is ready before trying to find the clock element
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setupLiveClock);
   } else {
-    // DOMContentLoaded has already fired
     setupLiveClock();
   }
 </script>
