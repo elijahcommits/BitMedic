@@ -28,9 +28,9 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
-    <div class="dialogue-box" style="max-width: 1000px; width: 100%; margin: 20px auto;"> {/* Moved some styles to class, kept max-width, width, margin */}
+    <div class="dialogue-box">
         <div class="dialogue-title-bar">
-            <span style="margin-left: 5px;">BitMedic to the Rescue!</span>
+            <span>BitMedic to the Rescue!</span> {/* Removed margin-left as flexbox handles spacing */}
             <a href="https://search.brave.com/" target="_blank" rel="noopener noreferrer" class="dialogue-close-button">
                X
             </a>
@@ -40,11 +40,10 @@ import Layout from '../layouts/Layout.astro';
                 ⚠️
             </div>
             <div class="dialogue-text-area">
-                <p>
+                <p class="dialogue-paragraph">
                     Our dedicated experts are ready to tackle whatever’s causing you grief, all remotely!<br><br>No need to let anyone into your home or haul your computer into some shop.<br>You reach out, we connect, your computer runs better.<br><br><em>Just like that.</em>
                 </p>
                 <div class="dialogue-button-container">
-                    {/* "Get Help!" button now uses a class */}
                     <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="get-help-button">
                         Get Help!
                     </a>
@@ -67,19 +66,17 @@ import Layout from '../layouts/Layout.astro';
       min-height: 100vh;
       margin: 0;
       padding-top: 25px;
-      padding-bottom: 60px; /* Base padding for 40px toolbar + 20px margin */
-
+      padding-bottom: 60px;
       user-select: none;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
     }
 
-    /* Responsive body padding for smaller toolbar */
     @media (max-width: 600px) {
       body {
         padding-top: 15px;
-        padding-bottom: 50px; /* For 32px toolbar + ~18px margin */
+        padding-bottom: 50px;
       }
     }
   </style>
@@ -104,6 +101,7 @@ import Layout from '../layouts/Layout.astro';
       width: 100%;
       max-width: 1000px;
       padding-left: 15px;
+      box-sizing: border-box;
     }
 
     .desktop-icon {
@@ -120,6 +118,7 @@ import Layout from '../layouts/Layout.astro';
       border: 1px solid transparent;
       word-wrap: break-word;
       margin-bottom: 15px;
+      box-sizing: border-box;
     }
 
     .desktop-icon:hover span,
@@ -133,6 +132,7 @@ import Layout from '../layouts/Layout.astro';
       height: 72px;
       object-fit: contain;
       margin-bottom: 8px;
+      box-sizing: border-box; /* Just in case */
     }
 
     .desktop-icon span {
@@ -145,15 +145,19 @@ import Layout from '../layouts/Layout.astro';
       padding: 2px 5px;
       border-radius: 3px;
       box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+      box-sizing: border-box;
     }
 
-    /* Styles for Dialogue Box (moved from inline) */
+    /* Styles for Dialogue Box */
     .dialogue-box {
+      max-width: 1000px;
+      width: 100%;
+      margin: 20px auto; /* Centers it if desktop-area doesn't align-items: center */
       box-sizing: border-box;
       border: 2px outset #C0C0C0;
       background-color: #F0F0F0;
-      font-family: 'Tahoma', 'Geneva', sans-serif;
-      font-size: 0.7rem; /* Base for dialogue, p tags override */
+      font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
+      font-size: 0.8rem; /* Slightly larger base for dialogue box */
       box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
       position: relative;
       z-index: 10;
@@ -161,39 +165,44 @@ import Layout from '../layouts/Layout.astro';
     .dialogue-title-bar {
       background-color: #0058A8;
       color: white;
-      padding: 5px;
+      padding: 5px 8px; /* Added horizontal padding */
       font-weight: bold;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      line-height: 1.2; /* Ensure consistent line height */
+      box-sizing: border-box;
     }
     .dialogue-close-button {
       font-family: 'Verdana', 'Arial', sans-serif;
       background-color: #C0C0C0;
       border: 1px outset white;
-      padding: 0px 4px;
-      font-size: 14px; /* Consider making this relative or smaller on mobile */
-      margin-right: 3px;
+      padding: 1px 5px; /* Adjusted padding */
+      font-size: 14px;
       cursor: pointer;
       color: black;
-      line-height: 1;
+      line-height: 1; /* Keep tight for the 'X' */
       text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
     }
     .dialogue-content {
       padding: 20px;
       display: flex;
       align-items: flex-start;
+      box-sizing: border-box;
     }
     .dialogue-icon {
       margin-right: 15px;
-      font-size: 30px; /* This is an emoji, consider responsive size */
+      font-size: 30px;
       color: #FFCC00;
+      line-height: 1; /* Align emoji better */
     }
     .dialogue-text-area {
       flex-grow: 1;
     }
-    .dialogue-text-area p {
-      font-size: 1rem; /* Overrides 0.7rem from .dialogue-box */
+    .dialogue-paragraph { /* Added class for more specific styling */
+      font-size: 1rem;
       margin-top: 0;
       margin-bottom: 20px;
       line-height: 1.4;
@@ -201,18 +210,29 @@ import Layout from '../layouts/Layout.astro';
     }
     .dialogue-button-container {
       text-align: center;
+      margin-top: 10px; /* Added margin */
     }
     .get-help-button {
+      appearance: none; /* Reset button appearance */
+      -webkit-appearance: none;
       background-color: #E1E1E1;
       border: 1px outset #C0C0C0;
-      padding: 5px 20px;
-      font-family: 'Tahoma', 'Geneva', sans-serif;
+      padding: 8px 25px; /* Slightly larger padding */
+      font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
       font-size: 1.5rem;
+      line-height: 1.2; /* Added line height */
       color: black;
       text-decoration: none;
       cursor: pointer;
       display: inline-block;
+      user-select: none;
+      -webkit-user-select: none;
     }
+    .get-help-button:active {
+      border-style: inset;
+      padding: 9px 24px 7px 26px; /* Pressed effect */
+    }
+
 
     /* --- Media Query for Smaller Screens --- */
     @media (max-width: 600px) {
@@ -223,16 +243,16 @@ import Layout from '../layouts/Layout.astro';
         gap: 15px;
         margin-bottom: 20px;
         padding-left: 5px;
-        justify-content: space-around; /* Better for fewer icons on small screens */
+        justify-content: space-around;
       }
       .desktop-icon {
-        width: 80px; /* Smaller icon container */
-        font-size: 11px; /* Smaller text */
+        width: 80px;
+        font-size: 11px;
         padding: 4px;
         margin-bottom: 10px;
       }
       .desktop-icon img {
-        width: 48px; /* Smaller icon image */
+        width: 48px;
         height: 48px;
         margin-bottom: 4px;
       }
@@ -241,26 +261,36 @@ import Layout from '../layouts/Layout.astro';
         line-height: 1.2;
       }
 
+      .dialogue-box {
+        font-size: 0.75rem; /* Slightly smaller base for dialogue on mobile */
+      }
+      .dialogue-title-bar {
+        padding: 4px 6px;
+      }
+      .dialogue-close-button {
+        font-size: 12px;
+        padding: 0px 3px;
+      }
       .dialogue-content {
         padding: 15px;
-        flex-direction: column; /* Stack icon and text on small screens */
+        flex-direction: column;
         align-items: center;
       }
       .dialogue-icon {
         margin-right: 0;
         margin-bottom: 10px;
-        font-size: 24px; /* Slightly smaller emoji */
+        font-size: 24px;
       }
-      .dialogue-text-area p {
-        font-size: 0.9rem; /* Slightly smaller paragraph text */
-        text-align: left; /* Ensure text is readable */
+      .dialogue-paragraph {
+        font-size: 0.9rem;
+        text-align: left;
       }
       .get-help-button {
-        font-size: 1.2rem; /* Smaller button text */
-        padding: 4px 15px;
+        font-size: 1.2rem;
+        padding: 6px 18px;
       }
-      .dialogue-close-button {
-        font-size: 12px; /* Smaller close button */
+      .get-help-button:active {
+        padding: 7px 17px 5px 19px;
       }
     }
   </style>

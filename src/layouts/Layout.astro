@@ -7,7 +7,6 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		{/* Updated favicon path below to point to the root of public/ (prefixed with base) */}
 		<link rel="icon" type="image/svg+xml" href="/BitMedic/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>BitMedic Helps!</title>
@@ -19,51 +18,107 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
 </html>
 
 <style is:global>
-  /* More comprehensive CSS resets for cross-browser consistency */
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
+  /* More aggressive CSS Resets for Cross-Browser Consistency */
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
     margin: 0;
     padding: 0;
+    border: 0;
+    font-size: 100%; /* Let body/html set the base font size */
+    font: inherit; /* Inherit font properties */
+    vertical-align: baseline;
+    box-sizing: border-box; /* Universal box-sizing */
+  }
+
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section {
+    display: block;
   }
 
   html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
-    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
+    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif; /* Site default font */
     scroll-behavior: smooth;
+    -moz-osx-font-smoothing: grayscale; /* Better font rendering on Firefox/Mac */
+    -webkit-font-smoothing: antialiased; /* Better font rendering on WebKit/Mac */
   }
 
   body {
     width: 100%;
     min-height: 100vh;
-    font-family: inherit;
+    font-family: inherit; /* Inherit from html (Tahoma stack) */
     color: #000000;
-    background-color: #DDD;
+    background-color: #DDD; /* Default background, overridden by page-specific styles */
+    text-rendering: optimizeLegibility; /* Can improve kerning and ligatures */
   }
 
-  ul[role="list"],
-  ol[role="list"] {
+  /* Remove list styles on ul, ol elements by default, explicitly */
+  ol, ul {
     list-style: none;
   }
 
+  blockquote, q {
+    quotes: none;
+  }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  /* Make images responsive by default */
   img,
   picture,
   video,
   canvas,
   svg {
-    display: block;
+    display: block; /* Remove extra space below images */
     max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
   }
 
+  /* Inherit fonts for inputs and buttons */
   input,
   button,
   textarea,
   select {
     font: inherit;
+    color: inherit;
+    margin: 0; /* Reset margin for form elements */
   }
 
+  button {
+    background: none; /* Remove default button backgrounds */
+    border: none;     /* Remove default button borders */
+    padding: 0;       /* Remove default button padding */
+    cursor: pointer;
+  }
+
+  /* Ensure links have a consistent default state */
+  a {
+    color: inherit; /* Inherit text color from parent by default */
+    text-decoration: none; /* Remove underlines by default */
+  }
+
+  /* Remove all animations and transitions for users that prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     html:focus-within {
       scroll-behavior: auto;

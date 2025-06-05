@@ -7,7 +7,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   <div class="start-button-container">
     <button class="start-button" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Start Menu">
       <img src="/BitMedic/icons/bitmedic_logo2-onlylogo_transparent.svg" alt="Start" class="start-icon" />
-      Start
+      <span>Start</span> {/* Wrapped text in span for better control if needed */}
     </button>
     <div class="start-menu" role="menu">
       <ul>
@@ -44,7 +44,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     color: #000000;
     z-index: 1000;
     box-sizing: border-box;
-    line-height: normal;
+    line-height: 1; /* Explicit line height for toolbar */
   }
 
   .start-button-container {
@@ -52,6 +52,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     height: 100%;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
   }
 
   .start-button {
@@ -62,7 +63,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     border-width: 2px;
     border-style: outset;
     border-color: #f0f0f0 #808080 #808080 #f0f0f0;
-    padding: 3px 12px;
+    padding: 0 12px; /* Adjusted padding, relying on height for vertical */
     margin: 0;
     margin-left: 3px;
     display: flex;
@@ -75,17 +76,21 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     color: #000000;
     height: 32px;
     box-sizing: border-box;
-    line-height: normal;
+    line-height: 30px; /* Match height closely minus borders if possible */
     white-space: nowrap;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
   }
+  .start-button span { /* Control line height of text inside button */
+    line-height: 1;
+    display: inline-block; /* Helps with vertical alignment */
+  }
 
   .start-button:active {
     border-style: inset;
-    padding: 4px 11px 2px 13px;
+    padding: 1px 11px 0px 13px; /* Adjust active padding for visual press */
   }
 
   .start-button:focus {
@@ -103,7 +108,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     margin-right: 7px;
     object-fit: contain;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: middle; /* Consistent vertical alignment */
   }
 
   .start-menu {
@@ -121,6 +126,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     z-index: 1001;
     font-size: 15px;
     text-align: left;
+    box-sizing: border-box;
   }
 
   .start-button-container:hover .start-menu,
@@ -133,20 +139,24 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     list-style: none;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 
   .start-menu li {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 
   .start-menu li a {
     display: flex;
     align-items: center;
-    padding: 7px 35px 7px 18px;
+    padding: 7px 18px; /* Simplified padding, increased vertical */
     text-decoration: none;
     color: #000000;
     white-space: nowrap;
+    box-sizing: border-box;
+    line-height: 1.2; /* Ensure consistent line height for menu items */
   }
 
   .start-menu li a:hover {
@@ -160,11 +170,12 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     border-bottom: 1px solid #ffffff;
     margin: 5px 1px;
     height: 0px;
+    box-sizing: border-box;
   }
 
   .clock-container {
     margin-left: auto;
-    padding: 2px 10px;
+    padding: 0 10px; /* Adjusted padding */
     height: 32px;
     border-width: 2px;
     border-style: inset;
@@ -175,10 +186,12 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     min-width: 80px;
     box-sizing: border-box;
     margin-right: 3px;
+    line-height: 30px; /* Match height */
   }
   .clock-time {
     font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
     font-size: 15px;
+    line-height: 1; /* Control its own line height */
   }
 
   /* --- Media Query for Smaller Screens --- */
@@ -189,12 +202,13 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
       padding: 0 3px;
     }
     .start-button {
-      height: 26px; /* calc(100% - 6px) for 32px toolbar */
-      padding: 1px 8px;
+      height: 26px;
+      padding: 0 8px;
       margin-left: 2px;
+      line-height: 24px; /* Adjust for button height */
     }
     .start-button:active {
-      padding: 2px 7px 0px 9px;
+      padding: 1px 7px 0px 9px;
     }
     .start-icon {
       width: 16px;
@@ -202,21 +216,22 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
       margin-right: 5px;
     }
     .start-menu {
-      width: 200px; /* Make start menu narrower */
+      width: 200px;
       font-size: 13px;
       padding: 2px;
     }
     .start-menu li a {
-      padding: 5px 20px 5px 10px;
+      padding: 5px 10px;
     }
      .start-menu li.divider hr {
       margin: 3px 1px;
     }
     .clock-container {
-      height: 26px; /* calc(100% - 6px) for 32px toolbar */
-      padding: 1px 6px;
+      height: 26px;
+      padding: 0 6px;
       min-width: 65px;
       margin-right: 2px;
+      line-height: 24px; /* Adjust for container height */
     }
     .clock-time {
       font-size: 13px;
