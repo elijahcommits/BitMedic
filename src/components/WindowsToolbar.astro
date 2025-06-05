@@ -4,7 +4,7 @@
 const buildTimeFallback = new Date().toLocaleTimeString([], {
   hour: 'numeric',
   minute: '2-digit',
-  hour12: true // Match desired live clock format
+  hour12: true
 });
 ---
 
@@ -56,9 +56,10 @@ const buildTimeFallback = new Date().toLocaleTimeString([], {
     <img src="/BitMedic/icons/newsletter_icon.svg" alt="Newsletter" class="taskbar-button-icon" />
     <span class="taskbar-button-text">Newsletter</span>
   </a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSe87Vmx4OSsn1eQ8zh0XDLioe3Q-O6dLpIm2Ov_m60BSitE7A/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="taskbar-button">
-    <img src="/BitMedic/icons/form_icon.svg" alt="Contact Form" class="taskbar-button-icon" />
-    <span class="taskbar-button-text">Contact Form</span>
+  {/* UPDATED: Text, alt attribute, and href for the Feedback button */}
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScNDbDYapyV-Y7urRlqsYrrd-nzLDmzPl53c2kyx0FD4O3qhA/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="taskbar-button">
+    <img src="/BitMedic/icons/form_icon.svg" alt="Feedback" class="taskbar-button-icon" />
+    <span class="taskbar-button-text">Feedback</span>
   </a>
 
   <div class="clock-container">
@@ -67,6 +68,7 @@ const buildTimeFallback = new Date().toLocaleTimeString([], {
 </div>
 
 <style>
+  /* CSS styles remain the same as the previous version */
   .windows-toolbar {
     position: fixed;
     bottom: 0;
@@ -281,7 +283,7 @@ const buildTimeFallback = new Date().toLocaleTimeString([], {
 
   .clock-container {
     margin-left: auto;
-    padding: 0 6px; /* UPDATED: Reduced side padding */
+    padding: 0 6px;
     height: 38px;
     border-width: 2px;
     border-style: inset;
@@ -289,7 +291,7 @@ const buildTimeFallback = new Date().toLocaleTimeString([], {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 75px; /* UPDATED: Reduced min-width slightly */
+    min-width: 75px;
     box-sizing: border-box;
     margin-right: 3px;
     line-height: 36px;
@@ -310,16 +312,8 @@ const buildTimeFallback = new Date().toLocaleTimeString([], {
     .start-menu-icon { width: 18px; height: 18px; }
     .taskbar-button { height: 30px; font-size: 13px; max-width: 130px; }
     .taskbar-button-icon { width: 15px; height: 15px; }
-
-    .clock-container {
-      height: 32px;
-      padding: 0 4px; /* UPDATED: Reduced mobile side padding */
-      min-width: 60px; /* UPDATED: Reduced mobile min-width */
-      line-height: 30px;
-    }
-    .clock-time {
-      font-size: 14px;
-    }
+    .clock-container { height: 32px; padding: 0 4px; min-width: 60px; line-height: 30px; }
+    .clock-time { font-size: 14px; }
   }
 </style>
 
@@ -330,11 +324,10 @@ const buildTimeFallback = new Date().toLocaleTimeString([], {
     if (clockTimeElement) {
       function updateClock() {
         const now = new Date();
-        // UPDATED: toLocaleTimeString options for new format with AM/PM
         const timeString = now.toLocaleTimeString([], {
-          hour: 'numeric', // Hour without leading zero
+          hour: 'numeric',
           minute: '2-digit',
-          hour12: true    // Use 12-hour format (will include AM/PM)
+          hour12: true
         });
         clockTimeElement.textContent = timeString;
       }
