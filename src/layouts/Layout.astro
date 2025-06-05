@@ -10,9 +10,25 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
 		<link rel="icon" type="image/svg+xml" href="/BitMedic/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>BitMedic Helps!</title>
+    {/* Script to calculate and set viewport height unit */}
+    <script is:inline>
+      const setVhUnit = () => {
+        if (typeof window !== 'undefined') {
+          let vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+      };
+      // Set on initial load
+      setVhUnit();
+      // Set on resize and orientation change
+      if (typeof window !== 'undefined') {
+        window.addEventListener('resize', setVhUnit);
+        window.addEventListener('orientationchange', setVhUnit);
+      }
+    </script>
 	</head>
 	<body>
-		<slot /> {/* Page content will go here, styled by index.astro */}
+		<slot />
 		<WindowsToolbar />
 	</body>
 </html>
@@ -35,24 +51,21 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-    height: 100%; /* Ensure HTML takes full height for body % height to work */
+    height: 100%; /* Important for body min-height: 100% to work as expected */
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
   }
 
   body {
     width: 100%;
-    min-height: 100%; /* Make body at least full height of html */
-    display: flex; /* Use flex to allow main content to grow */
+    min-height: 100%; /* Takes full height of html element */
+    /* min-height: 100vh; or min-height: calc(var(--vh, 1vh) * 100); will be set in index.astro */
+    display: flex;
     flex-direction: column;
     font-family: inherit;
     color: #000000;
-    background-color: #DDD; /* Default, will be overridden by index.astro */
+    background-color: #DDD;
     text-rendering: optimizeLegibility;
-    /* No explicit height or min-height: 100vh here, as index.astro will style it.
-       This body is now a flex container for what index.astro puts in <slot />
-       and the WindowsToolbar.
-    */
   }
 
   /* Common Resets */

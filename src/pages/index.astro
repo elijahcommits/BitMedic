@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="BitMedic Helps!">
   <main class="desktop-area">
+    {/* Desktop Icons - code remains the same as your last version */}
     <div class="desktop-icons-container">
       <a href="/BitMedic/about/" class="desktop-icon">
         <img src="/BitMedic/icons/about_icon.svg" alt="About BitMedic" />
@@ -22,13 +23,13 @@ import Layout from '../layouts/Layout.astro';
         <img src="/BitMedic/icons/merch_icon.svg" alt="BitMedic Merch" />
         <span>Merch</span>
       </a>
-      {/* Recycle Bin - for now, not linking anywhere specific, but styled as an icon */}
       <div class="desktop-icon">
         <img src="/BitMedic/icons/recycle_bin_icon.svg" alt="Recycle Bin" />
         <span>Recycle Bin</span>
       </div>
     </div>
 
+    {/* Dialogue Box - code remains the same as your last version */}
     <div class="dialogue-box" style="max-width: 1000px; width: 100%; margin: 20px auto;">
         <div class="dialogue-title-bar">
             <span>BitMedic to the Rescue!</span>
@@ -54,7 +55,6 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </main>
 
-  {/* Global styles for the body, specific to this page's desired "desktop" look */}
   <style is:global>
     body {
       display: flex;
@@ -65,10 +65,11 @@ import Layout from '../layouts/Layout.astro';
       background-position: center center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      min-height: 100vh;
+      /* Use the JS-calculated viewport height unit */
+      min-height: calc(var(--vh, 1vh) * 100);
       margin: 0;
       padding-top: 25px;
-      /* padding-bottom: 60px; -- REMOVED FROM BODY */
+      padding-bottom: 60px; /* For 40px toolbar + 20px margin */
 
       user-select: none;
       -webkit-user-select: none;
@@ -79,16 +80,16 @@ import Layout from '../layouts/Layout.astro';
     @media (max-width: 600px) {
       body {
         padding-top: 15px;
-        /* padding-bottom: 50px; -- REMOVED FROM BODY (Responsive part) */
+        padding-bottom: 50px; /* For 32px toolbar + ~18px margin */
       }
     }
   </style>
 
-  {/* Scoped styles for index.astro page elements */}
+  {/* Scoped styles for index.astro page elements - remain the same as your last version */}
   <style>
     .desktop-area {
-      padding: 20px; /* Existing top, left, right padding */
-      padding-bottom: 60px; /* ADDED: For 40px toolbar + 20px margin */
+      padding: 20px;
+      padding-bottom: 60px;
       width: 100%;
       box-sizing: border-box;
       display: flex;
@@ -155,7 +156,6 @@ import Layout from '../layouts/Layout.astro';
 
     /* Styles for Dialogue Box */
     .dialogue-box {
-      /* max-width and width are inline for this specific instance */
       box-sizing: border-box;
       border: 2px outset #C0C0C0;
       background-color: #F0F0F0;
@@ -236,11 +236,10 @@ import Layout from '../layouts/Layout.astro';
       padding: 9px 24px 7px 26px;
     }
 
-    /* --- Media Query for Smaller Screens --- */
     @media (max-width: 600px) {
       .desktop-area {
-        padding: 10px; /* This will override horizontal padding */
-        padding-bottom: 50px; /* ADDED HERE: For 32px toolbar + ~18px margin (Responsive) */
+        padding: 10px;
+        padding-bottom: 50px;
       }
       .desktop-icons-container {
         gap: 15px;
@@ -263,38 +262,14 @@ import Layout from '../layouts/Layout.astro';
         padding: 1px 3px;
         line-height: 1.2;
       }
-
-      .dialogue-box {
-        font-size: 0.75rem;
-      }
-      .dialogue-title-bar {
-        padding: 4px 6px;
-      }
-      .dialogue-close-button {
-        font-size: 12px;
-        padding: 0px 3px;
-      }
-      .dialogue-content {
-        padding: 15px;
-        flex-direction: column;
-        align-items: center;
-      }
-      .dialogue-icon {
-        margin-right: 0;
-        margin-bottom: 10px;
-        font-size: 24px;
-      }
-      .dialogue-paragraph {
-        font-size: 0.9rem;
-        text-align: left;
-      }
-      .get-help-button {
-        font-size: 1.2rem;
-        padding: 6px 18px;
-      }
-      .get-help-button:active {
-        padding: 7px 17px 5px 19px;
-      }
+      .dialogue-box { font-size: 0.75rem; }
+      .dialogue-title-bar { padding: 4px 6px; }
+      .dialogue-close-button { font-size: 12px; padding: 0px 3px; }
+      .dialogue-content { padding: 15px; flex-direction: column; align-items: center; }
+      .dialogue-icon { margin-right: 0; margin-bottom: 10px; font-size: 24px; }
+      .dialogue-paragraph { font-size: 0.9rem; text-align: left; }
+      .get-help-button { font-size: 1.2rem; padding: 6px 18px; }
+      .get-help-button:active { padding: 7px 17px 5px 19px; }
     }
   </style>
 </Layout>
