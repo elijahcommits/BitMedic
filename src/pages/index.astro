@@ -10,7 +10,8 @@ import Layout from '../layouts/Layout.astro';
         <img src="/BitMedic/icons/about_icon.svg" alt="About BitMedic" />
         <span>About</span>
       </a>
-      <a href="/BitMedic/contact/" class="desktop-icon">
+      {/* UPDATED: Contact Icon Link Below */}
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe87Vmx4OSsn1eQ8zh0XDLioe3Q-O6dLpIm2Ov_m60BSitE7A/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="desktop-icon">
         <img src="/BitMedic/icons/contact_icon.svg" alt="Contact BitMedic" />
         <span>Contact</span>
       </a>
@@ -42,10 +43,11 @@ import Layout from '../layouts/Layout.astro';
             </div>
             <div class="dialogue-text-area">
                 <p class="dialogue-paragraph">
-                    Our dedicated experts are ready to tackle whatever’s causing you grief, all remotely!<br><br>No need to let anyone into your home or haul your computer into some shop.<br>You reach out, we connect, your computer runs better.<br><br><strong><em>Just like that.</em></strong>
+                    Our dedicated experts are ready to tackle whatever’s causing you grief, all remotely!<br><br>No need to let anyone into your home or haul your computer into some shop.<br>You reach out, we connect, your computer runs better.<br><br><em>Just like that.</em>
                 </p>
                 <div class="dialogue-button-container">
-                    <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="get-help-button">
+                    {/* UPDATED: Get Help Button Link Below */}
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe87Vmx4OSsn1eQ8zh0XDLioe3Q-O6dLpIm2Ov_m60BSitE7A/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="get-help-button">
                         Get Help!
                     </a>
                 </div>
@@ -161,7 +163,7 @@ import Layout from '../layouts/Layout.astro';
       border: 2px outset #C0C0C0;
       background-color: #F0F0F0;
       font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-      font-size: 0.9rem; /* Base font size for dialogue increased */
+      font-size: 0.9rem;
       box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
       position: relative;
       z-index: 10;
@@ -171,7 +173,7 @@ import Layout from '../layouts/Layout.astro';
       color: white;
       padding: 5px 8px;
       font-weight: bold;
-      font-size: 1rem; /* Font size for title bar text */
+      font-size: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -183,7 +185,7 @@ import Layout from '../layouts/Layout.astro';
       background-color: #C0C0C0;
       border: 1px outset white;
       padding: 1px 5px;
-      font-size: 1rem; /* Adjusted to rem, was 14px */
+      font-size: 1rem;
       cursor: pointer;
       color: black;
       line-height: 1;
@@ -207,10 +209,10 @@ import Layout from '../layouts/Layout.astro';
       flex-grow: 1;
     }
     .dialogue-paragraph {
-      font-size: 1.15rem; /* Main text paragraph size increased */
+      font-size: 1.15rem;
       margin-top: 0;
       margin-bottom: 20px;
-      line-height: 1.5; /* Increased line height for better readability */
+      line-height: 1.5;
       color: black;
     }
     .dialogue-button-container {
@@ -224,7 +226,7 @@ import Layout from '../layouts/Layout.astro';
       border: 1px outset #C0C0C0;
       padding: 8px 25px;
       font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-      font-size: 1.5rem; /* Kept this large for call to action */
+      font-size: 1.5rem;
       line-height: 1.2;
       color: black;
       text-decoration: none;
@@ -238,7 +240,6 @@ import Layout from '../layouts/Layout.astro';
       padding: 9px 24px 7px 26px;
     }
 
-    /* --- Media Query for Smaller Screens --- */
     @media (max-width: 600px) {
       .desktop-area {
         padding: 10px;
@@ -267,16 +268,16 @@ import Layout from '../layouts/Layout.astro';
       }
 
       .dialogue-box {
-        font-size: 0.85rem; /* Responsive base for dialogue */
+        font-size: 0.85rem;
         margin: 15px 10px;
         width: calc(100% - 20px);
       }
       .dialogue-title-bar {
         padding: 4px 6px;
-        font-size: 0.9rem; /* Responsive title bar text */
+        font-size: 0.9rem;
       }
       .dialogue-close-button {
-        font-size: 0.9rem; /* Responsive close button text */
+        font-size: 0.9rem;
         padding: 0px 3px;
       }
       .dialogue-content {
@@ -287,15 +288,15 @@ import Layout from '../layouts/Layout.astro';
       .dialogue-icon {
         margin-right: 0;
         margin-bottom: 10px;
-        font-size: 26px; /* Responsive icon size */
+        font-size: 26px;
       }
       .dialogue-paragraph {
-        font-size: 1rem; /* Responsive paragraph size */
-        line-height: 1.45; /* Adjusted line height */
+        font-size: 1rem;
+        line-height: 1.45;
         text-align: left;
       }
       .get-help-button {
-        font-size: 1.3rem; /* Responsive button text */
+        font-size: 1.3rem;
         padding: 6px 18px;
       }
       .get-help-button:active {
