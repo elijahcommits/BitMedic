@@ -1,30 +1,86 @@
 ---
 // src/layouts/Layout.astro
-// 1. Import the WindowsToolbar component
 import WindowsToolbar from '../components/WindowsToolbar.astro';
 ---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" /> {/* Added initial-scale=1.0 for responsiveness */}
 		<link rel="icon" type="image/svg+xml" href="/BitMedic/bitmedic_logo2-onlylogo_transparent.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>BitMedic Helps!</title> {/* This title is already set as you wanted! */}
+		<title>BitMedic Helps!</title>
 	</head>
 	<body>
-		<slot /> {/* This is where your page content (like index.astro) will be injected */}
-		
-		{/* 2. Add the WindowsToolbar component here, just before the closing body tag */}
+		<slot />
 		<WindowsToolbar />
 	</body>
 </html>
 
-<style is:global> {/* It's good practice to add is:global if these are meant to be global resets/styles */}
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%; /* This ensures body can be a reference for 100vh if needed by children */
-	}
+<style is:global>
+  /* More comprehensive CSS resets for cross-browser consistency */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box; /* Apply border-box to all elements */
+    margin: 0;             /* Reset default margins */
+    padding: 0;            /* Reset default paddings */
+  }
+
+  html {
+    line-height: 1.15; /* Normalize line height */
+    -webkit-text-size-adjust: 100%; /* Prevent font size adjustments after orientation changes in iOS */
+    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif; /* Default site font */
+    scroll-behavior: smooth; /* Optional: smooth scrolling for anchor links */
+  }
+
+  body {
+    /* margin: 0; is covered by the * selector */
+    width: 100%;
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    /* Default body font, color, and background are set here.
+       Page-specific styles (like your gradient in index.astro) can override these. */
+    font-family: inherit; /* Inherit from html (Tahoma stack) */
+    color: #000000;      /* Default text color */
+    background-color: #DDD; /* Fallback/default background */
+  }
+
+  /* Remove list styles on ul, ol elements by default */
+  ul[role="list"],
+  ol[role="list"] {
+    list-style: none;
+  }
+
+  /* Make images responsive by default */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Inherit fonts for inputs and buttons */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  /* Remove all animations and transitions for users that prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 </style>
