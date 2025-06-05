@@ -1,48 +1,44 @@
-# Astro Starter Kit: Basics
+# BitMedic 🖥️ Troubleshooting & PC Help
 
-```sh
-npm create astro@latest -- --template basics
-```
+Hello AI! This project is for **BitMedic**, a remote PC helpdesk service. Our goal is to create a user-friendly website where people can learn about our services and get remote help with their computer troubles. The site has a fun, retro Windows-inspired theme!
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## 🎯 Purpose of this Site
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+* To act as the main online presence for the BitMedic helpdesk.
+* To clearly describe the remote PC support services offered.
+* To provide an easy way for potential clients to understand the service and how to get help.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## ✨ Key Features & Theme
 
-## 🚀 Project Structure
+* **Retro UI:** The website embraces a "classic Windows" aesthetic. This is reflected in:
+    * The main dialogue box on the landing page.
+    * The custom Windows-style toolbar and Start menu.
+* **User-Friendly:** Despite the retro look, the site aims to be intuitive and easy to navigate.
+* **Remote First:** The core message is that BitMedic provides expert PC support remotely.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠️ Tech Stack
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+* **Framework:** Astro 🚀 (see `package.json` for version)
+* **Deployment:** GitHub Pages (workflow defined in `.github/workflows/deploy.yml`)
+* **Styling:** Primarily custom CSS, focused on replicating classic UI elements.
+* **Base URL for Deployment:** `/BitMedic/` (see `astro.config.mjs`)
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🗺️ Current Structure & Planned Pages
 
-## 🧞 Commands
+* **Landing Page (`src/pages/index.astro`):** Features the main "BitMedic to the Rescue!" dialogue box.
+* **`WindowsToolbar` Component (`src/components/WindowsToolbar.astro`):** A site-wide fixed toolbar with a Start menu.
+* **Start Menu Links To (future pages/sections):**
+    * About
+    * Contact
+    * Recommended Tech
+    * Merch
 
-All commands are run from the root of the project, from a terminal:
+## 🧑‍💻 Your Role, AI (Coding Partner)!
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+When assisting with this project, please help me to:
+* Develop new features, pages, and components (like simulated "Windows" pop-ups).
+* Write clean and efficient Astro/HTML/CSS, and client-side JavaScript when needed.
+* Maintain and enhance the "classic Windows" theme and user experience.
+* Ensure the site is accessible and easy for all users to understand and navigate.
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Let's build a helpful and unique website for BitMedic! 👍
