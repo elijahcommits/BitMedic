@@ -5,9 +5,9 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
 
 <div class="windows-toolbar">
   <div class="start-button-container">
-    <button class="start-button" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Start Menu">
-      <img src="/BitMedic/icons/bitmedic_logo2-onlylogo_transparent.svg" alt="Start" class="start-icon" />
-      <span>Start</span>
+    <button class="start-button" type="button" aria-haspopup="true" aria-expanded="false" aria-label="BitMedic Menu"> {/* Updated aria-label */}
+      <img src="/BitMedic/icons/bitmedic_logo2-onlylogo_transparent.svg" alt="BitMedic Menu" class="start-icon" />
+      <span>BitMedic</span> {/* UPDATED: Text changed from "Start" to "BitMedic" */}
     </button>
     <div class="start-menu" role="menu">
       <ul>
@@ -20,6 +20,16 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
       </ul>
     </div>
   </div>
+
+  {/* Taskbar Buttons */}
+  <a href="https://bitmedic.beehiiv.io/" target="_blank" rel="noopener noreferrer" class="taskbar-button">
+    <img src="/BitMedic/icons/newsletter_icon.svg" alt="Newsletter" class="taskbar-button-icon" />
+    <span class="taskbar-button-text">Newsletter</span>
+  </a>
+  <a href="#" class="taskbar-button"> {/* Placeholder link for Google Form */}
+    <img src="/BitMedic/icons/form_icon.svg" alt="Feedback Form" class="taskbar-button-icon" />
+    <span class="taskbar-button-text">Feedback</span>
+  </a>
 
   <div class="clock-container">
     <span class="clock-time">{buildTime}</span>
@@ -45,12 +55,10 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     z-index: 1000;
     box-sizing: border-box;
     line-height: 1;
-    /* Hint for browsers to create a new layer, can sometimes help with fixed positioning bugs on mobile */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
   }
 
-  /* ... rest of the styles from previous version ... */
   .start-button-container {
     position: relative;
     height: 100%;
@@ -63,10 +71,10 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-color: #c0c0c0;
+    background-color: #0058a8;
     border-width: 2px;
     border-style: outset;
-    border-color: #f0f0f0 #808080 #808080 #f0f0f0;
+    border-color: #3b8bcd #003366 #003366 #3b8bcd;
     padding: 0 12px;
     margin: 0;
     margin-left: 3px;
@@ -77,7 +85,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     font-weight: bold;
     font-family: inherit;
     font-size: inherit;
-    color: #000000;
+    color: #ffffff;
     height: 32px;
     box-sizing: border-box;
     line-height: 30px;
@@ -95,10 +103,11 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   .start-button:active {
     border-style: inset;
     padding: 1px 11px 0px 13px;
+    background-color: #004c8c;
   }
 
   .start-button:focus {
-    outline: 1px dotted #000000;
+    outline: 1px dotted #ffffff;
     outline-offset: -4px;
   }
   .start-button::-moz-focus-inner {
@@ -113,6 +122,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     object-fit: contain;
     display: inline-block;
     vertical-align: middle;
+    filter: brightness(0) invert(1);
   }
 
   .start-menu {
@@ -165,7 +175,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   }
 
   .start-menu li a:hover {
-    background-color: #000080;
+    background-color: #0058a8; /* UPDATED: Hover blue to match taskbar button hover */
     color: #ffffff;
   }
 
@@ -176,6 +186,62 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     margin: 5px 1px;
     height: 0px;
     box-sizing: border-box;
+  }
+
+  .taskbar-button {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    background-color: #c0c0c0;
+    border-width: 2px;
+    border-style: outset;
+    border-color: #f0f0f0 #808080 #808080 #f0f0f0;
+    padding: 0 8px;
+    margin-left: 4px;
+    text-decoration: none;
+    color: #000000;
+    font-family: inherit;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background-color 0.1s ease, color 0.1s ease;
+  }
+
+  .taskbar-button:hover,
+  .taskbar-button:focus {
+    background-color: #0058a8;
+    color: #ffffff;
+    border-color: #3b8bcd #003366 #003366 #3b8bcd;
+    outline: none;
+  }
+
+  .taskbar-button:active {
+    border-style: inset;
+    background-color: #004c8c;
+    color: #e0e0e0;
+  }
+
+  .taskbar-button-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    object-fit: contain;
+    filter: brightness(1);
+  }
+  .taskbar-button:hover .taskbar-button-icon {
+     /* filter: invert(1) brightness(2); */
+  }
+
+  .taskbar-button-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1;
   }
 
   .clock-container {
@@ -200,6 +266,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     line-height: 1;
   }
 
+  /* --- Media Query for Smaller Screens --- */
   @media (max-width: 600px) {
     .windows-toolbar {
       height: 32px;
@@ -231,6 +298,20 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
      .start-menu li.divider hr {
       margin: 3px 1px;
     }
+
+    .taskbar-button {
+      height: 24px;
+      padding: 0 5px;
+      font-size: 12px;
+      margin-left: 3px;
+      max-width: 120px;
+    }
+    .taskbar-button-icon {
+      width: 14px;
+      height: 14px;
+      margin-right: 3px;
+    }
+
     .clock-container {
       height: 26px;
       padding: 0 6px;
@@ -250,7 +331,10 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     if (clockTimeElement) {
       function updateClock() {
         const now = new Date();
-        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const timeString = now.toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
         clockTimeElement.textContent = timeString;
       }
       updateClock();
