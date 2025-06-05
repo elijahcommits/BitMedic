@@ -1,22 +1,30 @@
+---
+// src/layouts/Layout.astro
+// 1. Import the WindowsToolbar component
+import WindowsToolbar from '../components/WindowsToolbar.astro';
+---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/BitMedic/bitmedic_logo2-onlylogo_transparent.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>BitMedic Helps!</title>
+		<title>BitMedic Helps!</title> {/* This title is already set as you wanted! */}
 	</head>
 	<body>
-		<slot />
+		<slot /> {/* This is where your page content (like index.astro) will be injected */}
+		
+		{/* 2. Add the WindowsToolbar component here, just before the closing body tag */}
+		<WindowsToolbar />
 	</body>
 </html>
 
-<style>
+<style is:global> {/* It's good practice to add is:global if these are meant to be global resets/styles */}
 	html,
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
+		height: 100%; /* This ensures body can be a reference for 100vh if needed by children */
 	}
 </style>
