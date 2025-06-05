@@ -1,15 +1,13 @@
 ---
 // src/components/WindowsToolbar.astro
-
-// For the clock - this will be static (time of the last site build).
-// For a live, updating clock, client-side JavaScript would be needed.
 const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 ---
 
 <div class="windows-toolbar">
   <div class="start-button-container">
     <button class="start-button" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Start Menu">
-      <img src="/BitMedic/bitmedic_logo2-onlylogo_transparent.svg" alt="Start" class="start-icon" />
+      {/* === Updated Image Path Below === */}
+      <img src="/BitMedic/icons/bitmedic_logo2-onlylogo_transparent.svg" alt="Start" class="start-icon" />
       Start
     </button>
     <div class="start-menu" role="menu">
@@ -25,10 +23,11 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   </div>
 
   <div class="clock-container">
-    <span class="clock-time">{buildTime}</span> {/* This will be static; a live clock would need client-side JS */}
+    <span class="clock-time">{buildTime}</span>
   </div>
 </div>
 
+{/* Styles remain the same as the last version for the 40px toolbar (with the fix for menu hover gap) */}
 <style>
   .windows-toolbar {
     position: fixed;
@@ -113,8 +112,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   .start-menu {
     display: none;
     position: absolute;
-    /* MODIFIED LINE BELOW: Removed the gap */
-    bottom: 100%; /* Positions the bottom of the menu at the top of its container */
+    bottom: 100%;
     left: 0;
     width: 280px;
     background-color: #c0c0c0;
@@ -128,10 +126,9 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
     text-align: left;
   }
 
-  /* Show menu on hover/focus over the container/button */
   .start-button-container:hover .start-menu,
-  .start-button:focus + .start-menu, /* For keyboard accessibility */
-  .start-menu:hover { /* Keep menu open when hovering menu itself */
+  .start-button:focus + .start-menu,
+  .start-menu:hover {
     display: block;
   }
 
@@ -188,8 +185,6 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
   }
 </style>
 
-{/* Client-side script for the live clock - This was added in a previous step. */}
-{/* If you removed it, make sure it's here. */}
 <script>
   function setupLiveClock() {
     const clockTimeElement = document.querySelector('.windows-toolbar .clock-container .clock-time');
@@ -207,7 +202,7 @@ const buildTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '
       updateClock();
       setInterval(updateClock, 1000);
     } else {
-      // console.error("Clock time element not found for live update."); // Optional: for debugging
+      // console.error("Clock time element not found for live update.");
     }
   }
 

@@ -6,8 +6,9 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" /> {/* Added initial-scale=1.0 for responsiveness */}
-		<link rel="icon" type="image/svg+xml" href="/BitMedic/bitmedic_logo2-onlylogo_transparent.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		{/* Updated favicon path below to point to the root of public/ (prefixed with base) */}
+		<link rel="icon" type="image/svg+xml" href="/BitMedic/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>BitMedic Helps!</title>
 	</head>
@@ -22,36 +23,31 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
   *,
   *::before,
   *::after {
-    box-sizing: border-box; /* Apply border-box to all elements */
-    margin: 0;             /* Reset default margins */
-    padding: 0;            /* Reset default paddings */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   html {
-    line-height: 1.15; /* Normalize line height */
-    -webkit-text-size-adjust: 100%; /* Prevent font size adjustments after orientation changes in iOS */
-    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif; /* Default site font */
-    scroll-behavior: smooth; /* Optional: smooth scrolling for anchor links */
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
+    scroll-behavior: smooth;
   }
 
   body {
-    /* margin: 0; is covered by the * selector */
     width: 100%;
-    min-height: 100vh; /* Ensure body takes at least full viewport height */
-    /* Default body font, color, and background are set here.
-       Page-specific styles (like your gradient in index.astro) can override these. */
-    font-family: inherit; /* Inherit from html (Tahoma stack) */
-    color: #000000;      /* Default text color */
-    background-color: #DDD; /* Fallback/default background */
+    min-height: 100vh;
+    font-family: inherit;
+    color: #000000;
+    background-color: #DDD;
   }
 
-  /* Remove list styles on ul, ol elements by default */
   ul[role="list"],
   ol[role="list"] {
     list-style: none;
   }
 
-  /* Make images responsive by default */
   img,
   picture,
   video,
@@ -61,7 +57,6 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     max-width: 100%;
   }
 
-  /* Inherit fonts for inputs and buttons */
   input,
   button,
   textarea,
@@ -69,7 +64,6 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     font: inherit;
   }
 
-  /* Remove all animations and transitions for users that prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     html:focus-within {
       scroll-behavior: auto;
