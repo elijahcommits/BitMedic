@@ -21,7 +21,7 @@ Hello AI! This project is for **BitMedic**, a remote PC helpdesk service. Our go
 * **Framework:** Astro 🚀 (see `package.json` for version)
 * **Deployment:** GitHub Pages (workflow defined in `.github/workflows/deploy.yml`)
 * **Styling:** Primarily custom CSS, focused on replicating classic UI elements.
-* **Base URL for Deployment:** `/BitMedic/` (see `astro.config.mjs`)
+* **Base URL for Deployment:** `/` (see `astro.config.mjs`)
 
 ## 🗺️ Current Structure & Planned Pages
 
