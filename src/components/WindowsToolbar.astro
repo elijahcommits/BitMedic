@@ -1,3 +1,6 @@
+---
+// This component does NOT import or use Layout.astro. This breaks the loop.
+---
 <div class="windows-toolbar">
   <div class="start-button-container">
     <button class="start-button" type="button" aria-haspopup="true" aria-expanded="false" aria-label="BitMedic Menu">
@@ -6,339 +9,74 @@
     </button>
     <div class="start-menu" role="menu">
       <ul>
-        <li>
-          <a href="/about/" role="menuitem">
-            <img src="/icons/about_icon.svg" alt="" class="start-menu-icon" />
-            About
-          </a>
-        </li>
-        <li>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe87Vmx4OSsn1eQ8zh0XDLioe3Q-O6dLpIm2Ov_m60BSitE7A/viewform?usp=header" role="menuitem">
-            <img src="/icons/contact_icon.svg" alt="" class="start-menu-icon" />
-            Contact
-          </a>
-        </li>
-        <li>
-          <a href="/tech/" role="menuitem">
-            <img src="/icons/tech_icon.svg" alt="" class="start-menu-icon" />
-            Recommended Tech
-          </a>
-        </li>
-        <li>
-          <a href="/merch/" role="menuitem">
-            <img src="/icons/merch_icon.svg" alt="" class="start-menu-icon" />
-            Merch
-          </a>
-        </li>
+        <li><a href="/about/" role="menuitem"><img src="/icons/about_icon.svg" alt="" class="start-menu-icon" />About</a></li>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSe87Vmx4OSsn1eQ8zh0XDLioe3Q-O6dLpIm2Ov_m60BSitE7A/viewform?usp=header" role="menuitem"><img src="/icons/contact_icon.svg" alt="" class="start-menu-icon" />Contact</a></li>
+        <li><a href="/tech/" role="menuitem"><img src="/icons/tech_icon.svg" alt="" class="start-menu-icon" />Recommended Tech</a></li>
+        <li><a href="/merch/" role="menuitem"><img src="/icons/merch_icon.svg" alt="" class="start-menu-icon" />Merch</a></li>
         <li class="divider"><hr /></li>
-        <li>
-          <a href="https://search.brave.com/" target="_blank" rel="noopener noreferrer" role="menuitem">
-            <img src="/icons/log_off_icon.svg" alt="" class="start-menu-icon" />
-            Log Off...
-          </a>
-        </li>
+        <li><a href="https://search.brave.com/" target="_blank" rel="noopener noreferrer" role="menuitem"><img src="/icons/log_off_icon.svg" alt="" class="start-menu-icon" />Log Off...</a></li>
       </ul>
     </div>
   </div>
 
-  <a href="https://bitmedic.beehiiv.com/" target="_blank" rel="noopener noreferrer" class="taskbar-button">
-    <img src="/icons/newsletter_icon.svg" alt="Newsletter" class="taskbar-button-icon" />
-    <span class="taskbar-button-text">Newsletter</span>
-  </a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLScNDbDYapyV-Y7urRlqsYrrd-nzLDmzPl53c2kyx0FD4O3qhA/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="taskbar-button">
-    <img src="/icons/form_icon.svg" alt="Feedback" class="taskbar-button-icon" />
-    <span class="taskbar-button-text">Feedback</span>
-  </a>
+  <a href="https://bitmedic.beehiiv.com/" target="_blank" rel="noopener noreferrer" class="taskbar-button"><img src="/icons/newsletter_icon.svg" alt="Newsletter" class="taskbar-button-icon" /><span class="taskbar-button-text">Newsletter</span></a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScNDbDYapyV-Y7urRlqsYrrd-nzLDmzPl53c2kyx0FD4O3qhA/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="taskbar-button"><img src="/icons/form_icon.svg" alt="Feedback" class="taskbar-button-icon" /><span class="taskbar-button-text">Feedback</span></a>
 
-  <div class="clock-container">
-    {/* The time will be populated by the script below */}
-    <span class="clock-time"></span>
-  </div>
+  <div class="clock-container"><span class="clock-time"></span></div>
 </div>
 
 <style>
-  .windows-toolbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    /* CORRECTED: Use the global CSS variable for height */
-    height: var(--taskbar-height);
-    background-color: #c0c0c0;
-    border-top: 2px solid #ffffff;
-    box-shadow: inset 0 1px 1px #dfdfdf;
-    display: flex;
-    align-items: center;
-    padding: 0 6px;
-    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-    font-size: 16px;
-    color: #000000;
-    z-index: 10000;
-    box-sizing: border-box;
-    line-height: 1;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-  }
-  .start-button-container {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-  }
-  .start-button {
-    appearance: none;
-    -webkit-appearance: none;
-    background-color: #0058a8;
-    border-width: 2px;
-    border-style: outset;
-    border-color: #3b8bcd #003366 #003366 #3b8bcd;
-    padding: 0 14px;
-    margin: 0;
-    margin-left: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: inherit;
-    font-size: inherit;
-    color: #ffffff;
-    height: 38px;
-    box-sizing: border-box;
-    line-height: 36px;
-    white-space: nowrap;
-    user-select: none;
-  }
-  .start-button span {
-    line-height: 1;
-    display: inline-block;
-  }
-  .start-button:active {
-    border-style: inset;
-    padding: 1px 13px 0px 15px;
-    background-color: #004c8c;
-  }
-  .start-button:focus {
-    outline: 1px dotted #ffffff;
-    outline-offset: -4px;
-  }
-  .start-button::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-  }
-  .start-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
-    object-fit: contain;
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .start-menu {
-    display: none;
-    position: absolute;
-    bottom: 100%;
-    left: 0;
-    width: 300px;
-    background-color: #c0c0c0;
-    border-width: 2px;
-    border-style: outset;
-    border-color: #f0f0f0 #808080 #808080 #f0f0f0;
-    box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-    padding: 5px;
-    z-index: 1001;
-    font-size: 16px;
-    color: #000000;
-    text-align: left;
-    box-sizing: border-box;
-  }
-  .start-button-container:hover .start-menu,
-  .start-button:focus + .start-menu,
-  .start-menu:hover {
-    display: block;
-  }
-  .start-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  .start-menu li {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  .start-menu li a {
-    display: flex;
-    align-items: center;
-    padding: 8px 12px 8px 10px;
-    text-decoration: none;
-    color: #000000;
-    white-space: nowrap;
-    box-sizing: border-box;
-    line-height: 1.2;
-  }
-  .start-menu-icon {
-    width: 22px;
-    height: 22px;
-    margin-right: 10px;
-    object-fit: contain;
-    vertical-align: middle;
-  }
-  .start-menu li a:hover {
-    background-color: #0058a8;
-    color: #ffffff;
-  }
-  .start-menu li.divider hr {
-    border: 0;
-    border-top: 1px solid #808080;
-    border-bottom: 1px solid #ffffff;
-    margin: 6px 1px;
-    height: 0px;
-    box-sizing: border-box;
-  }
-  .taskbar-button {
-    display: flex;
-    align-items: center;
-    height: 36px;
-    background-color: #c0c0c0;
-    border-width: 2px;
-    border-style: outset;
-    border-color: #f0f0f0 #808080 #808080 #f0f0f0;
-    padding: 0 10px;
-    margin-left: 5px;
-    text-decoration: none;
-    color: #000000;
-    font-family: inherit;
-    font-size: 15px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 180px;
-    box-sizing: border-box;
-    user-select: none;
-    transition: background-color 0.1s ease, color 0.1s ease;
-  }
-  .taskbar-button:focus {
-    outline: 1px dotted #000000;
-    outline-offset: -3px;
-  }
-  .taskbar-button:hover,
-  .taskbar-button:focus-visible {
-    background-color: #0058a8;
-    color: #ffffff;
-    border-color: #3b8bcd #003366 #003366 #3b8bcd;
-    outline: none;
-  }
-  .taskbar-button:active {
-    border-style: inset;
-    background-color: #004c8c;
-    color: #e0e0e0;
-  }
-  .taskbar-button-icon {
-    width: 18px;
-    height: 18px;
-    margin-right: 6px;
-    object-fit: contain;
-    filter: brightness(1);
-  }
-  .taskbar-button:hover .taskbar-button-icon,
-  .taskbar-button:focus-visible .taskbar-button-icon {
-    filter: brightness(0) invert(1);
-  }
-  .taskbar-button-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    line-height: 1;
-  }
-  .clock-container {
-    margin-left: auto;
-    padding: 0 6px;
-    height: 38px;
-    border-width: 2px;
-    border-style: inset;
-    border-color: #808080 #f0f0f0 #f0f0f0 #808080;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 75px;
-    box-sizing: border-box;
-    margin-right: 3px;
-    line-height: 36px;
-  }
-  .clock-time {
-    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-    font-size: 16px;
-    color: #000000;
-    line-height: 1;
-  }
+  .windows-toolbar { position: fixed; bottom: 0; left: 0; width: 100%; height: var(--taskbar-height); background-color: #c0c0c0; border-top: 2px solid #ffffff; box-shadow: inset 0 1px 1px #dfdfdf; display: flex; align-items: center; padding: 0 6px; font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif; z-index: 10000; }
+  .start-button-container { position: relative; height: 100%; display: flex; align-items: center; }
+  .start-button { appearance: none; -webkit-appearance: none; background-color: #0058a8; border: 2px outset #3b8bcd; padding: 0 14px; margin-left: 3px; display: flex; align-items: center; cursor: pointer; font-weight: bold; color: #ffffff; height: 38px; }
+  .start-button:active { border-style: inset; }
+  .start-icon { width: 24px; height: 24px; margin-right: 8px; }
+  .start-menu { display: none; position: absolute; bottom: 100%; left: 0; width: 300px; background-color: #c0c0c0; border: 2px outset #f0f0f0; box-shadow: 3px 3px 6px rgba(0,0,0,0.3); padding: 5px; z-index: 1001; }
+  .start-button-container:hover .start-menu, .start-button:focus + .start-menu, .start-menu:hover { display: block; }
+  .start-menu ul { list-style: none; }
+  .start-menu li a { display: flex; align-items: center; padding: 8px 12px; color: #000000; text-decoration: none; }
+  .start-menu-icon { width: 22px; height: 22px; margin-right: 10px; }
+  .start-menu li a:hover { background-color: #0058a8; color: #ffffff; }
+  .start-menu li.divider hr { border: 0; border-top: 1px solid #808080; border-bottom: 1px solid #ffffff; margin: 6px 1px; }
+  .taskbar-button { display: flex; align-items: center; height: 36px; border: 2px outset #f0f0f0; padding: 0 10px; margin-left: 5px; color: #000000; text-decoration: none; max-width: 180px; }
+  .taskbar-button:active { border-style: inset; }
+  .taskbar-button-icon { width: 18px; height: 18px; margin-right: 6px; }
+  .clock-container { margin-left: auto; height: 38px; border: 2px inset #808080; display: flex; align-items: center; padding: 0 6px; }
 
-    @media (max-width: 600px) {
-      .windows-toolbar {
-        --taskbar-height: 40px; 
-        font-size: 14px;
-      }
-      .start-button {
-        height: 32px;
-        padding: 0 10px;
-        line-height: 30px;
-      }
-      .start-icon {
-        width: 18px;
-        height: 18px;
-        margin-right: 6px;
-      }
-      .start-menu {
-        width: 220px;
-        font-size: 14px;
-      }
-      .start-menu li a {
-        padding: 6px 10px;
-      }
-      .start-menu-icon {
-        width: 18px;
-        height: 18px;
-      }
-      .taskbar-button {
-        height: 30px;
-        font-size: 13px;
-        max-width: 130px;
-      }
-      .taskbar-button-icon {
-        width: 15px;
-        height: 15px;
-      }
-      .clock-container {
-        height: 32px;
-        padding: 0 4px;
-        min-width: 60px;
-        line-height: 30px;
-      }
-      .clock-time {
-        font-size: 14px;
-      }
-    }
+  @media (max-width: 600px) {
+    .windows-toolbar { --taskbar-height: 40px; }
+    .start-button { height: 32px; }
+    .taskbar-button { height: 30px; }
+    .clock-container { height: 32px; }
+  }
 </style>
 
 <script>
-  function setupLiveClock() {
-    const clockTimeElement = document.querySelector('.windows-toolbar .clock-container .clock-time');
-    if (clockTimeElement) {
-      function updateClock() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
-        clockTimeElement.textContent = timeString;
-      }
-      updateClock(); // Call immediately to prevent a flicker
-      setInterval(updateClock, 1000); // Then update every second
+  // Select the clock element directly.
+  const clockTimeElement = document.querySelector('.windows-toolbar .clock-time');
+
+  // Check if the element exists before doing anything.
+  if (clockTimeElement) {
+    const updateClock = () => {
+      const now = new Date();
+      // Format time for your local timezone (PDT)
+      const timeString = now.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'America/Los_Angeles' 
+      });
+      clockTimeElement.textContent = timeString;
+    };
+
+    // This safeguard prevents multiple clock intervals from running at the same time,
+    // which can happen during development with hot-reloading.
+    if (window.clockInterval) {
+      clearInterval(window.clockInterval);
     }
-  }
-  // Run the script after the DOM is fully loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupLiveClock);
-  } else {
-    setupLiveClock();
+
+    // Run the clock immediately and then set it to update every second.
+    updateClock();
+    window.clockInterval = setInterval(updateClock, 1000);
   }
 </script>

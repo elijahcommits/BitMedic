@@ -159,6 +159,11 @@ import Layout from '../layouts/Layout.astro';
         max-height: calc(100vh - var(--taskbar-height) - 20px); /* 10px top/bottom margin */
       }
     }
+      .dialogue-close-button:hover {
+        background-color: red;
+        color: white;
+        border-color: white; /* Optional: Change border color too */
+    }
     
     /* BSOD styles remain the same */
     .bsod-screen { /* ... */ }
@@ -166,7 +171,41 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script>
-  // Your BSOD script remains the same
-  function initializeBsodInteraction() { /* ... */ }
-  if (document.readyState === 'loading') { /* ... */ } else { /* ... */ }
+  function initializeBsodInteraction() {
+    const closeButton = document.querySelector('.dialogue-box .dialogue-close-button');
+    const bsodScreen = document.getElementById('bsod-screen');
+    const dialogueBox = document.querySelector('.dialogue-box');
+
+    if (!closeButton || !bsodScreen || !dialogueBox) return;
+
+    // Safeguard: Check if we've already added the listener
+    if (closeButton.dataset.listenerAdded) {
+      return;
+    }
+
+    closeButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      bsodScreen.style.display = 'block';
+      dialogueBox.style.display = 'none';
+    });
+
+    // Mark that we've added the listener
+    closeButton.dataset.listenerAdded = 'true';
+
+    // These events are safe to re-add, but the close button was the main concern
+    bsodScreen.addEventListener('click', function() {
+      bsodScreen.style.display = 'none';
+      dialogueBox.style.display = 'flex';
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && bsodScreen.style.display !== 'none') {
+        bsodScreen.style.display = 'none';
+        dialogueBox.style.display = 'flex';
+      }
+    });
+  }
+
+  // Use Astro's built-in event for page loads and transitions
+  document.addEventListener('astro:page-load', initializeBsodInteraction);
 </script>
