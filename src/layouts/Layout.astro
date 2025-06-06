@@ -33,21 +33,8 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
   :root {
     --taskbar-height: 48px;
   }
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-
-  html {
-    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
-    height: 100%;
-  }
-
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0; }
+  html { font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif; height: 100%; }
   body {
     display: flex;
     flex-direction: column;
@@ -64,7 +51,6 @@ import WindowsToolbar from '../components/WindowsToolbar.astro';
     user-select: none;
     -webkit-user-select: none;
   }
-  
   @media (max-width: 600px) {
     body {
       padding-top: 15px;
