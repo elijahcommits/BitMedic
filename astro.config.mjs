@@ -3,9 +3,9 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  // UPDATED: Set back to your elicrab.com domain
-  site: 'https://elicrab.com',
+  // UPDATED: Set to your custom domain
+  site: 'https://www.bitmedic.io',
 
-  // UPDATED: Set base back to '/BitMedic'
-  base: '/BitMedic',
+  // UPDATED: Set base to root
+  base: '/',
 });
