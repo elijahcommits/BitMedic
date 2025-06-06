@@ -32,12 +32,13 @@ import Layout from '../layouts/Layout.astro';
         <p class="bsod-title">A "Problem" Has Been Detected<br /> (and BitMedic is here for it!)</p>
         <p>Your PC hasn't actually crashed. This is a simulation!</p>
         <ul class="bsod-contact-info">
-          <li>📞 Phone: (555) BIT-MEDC</li>
-          <li>📧 Email: help@bitmedic.online (Not real yet!)</li>
+          <li>📞 Phone: (360) 975-4748</li>
+          <li>⌚ Hours: 7am to 7pm PST <em>(with exceptions)</em></li>
+          <li>📧 Email: support@bitmedic.io</li>
           <li>🌐 Website: <a href="https://www.bitmedic.io/" target="_blank" rel="noopener noreferrer">https://bitmedic.io/</a></li>
         </ul>
         <p class="bsod-tech-info">*** STOP: 0x000SMILE (0xCHILLOUT, 0xWEGOTTHIS, 0xNOREALERROR, 0xCALLBITMEDIC)</p>
-        <p class="bsod-restart-info">Click anywhere on this blue screen to make it go away.</p>
+        <p class="bsod-restart-info">Press ESC or click anywhere on this blue screen to make it go away.</p>
       </div>
     </div>
   </main>
@@ -187,6 +188,16 @@ import Layout from '../layouts/Layout.astro';
     .bsod-contact-info {
       list-style: none;
       padding-left: 1em;
+    }
+      /* This targets links in the BSOD contact info list */
+    .bsod-contact-info a,
+    .bsod-contact-info a:visited {
+      color: #FFFF80; /* A bright, readable yellow for both normal and visited states */
+      text-decoration: none;
+    }
+    /* This ensures the hover effect still works for better interactivity */
+    .bsod-contact-info a:hover {
+      color: #FFFFFF; /* Bright white on hover */
     }
     .bsod-tech-info {
       margin-top: 2.5em;
