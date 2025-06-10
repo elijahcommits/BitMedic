@@ -1,4 +1,16 @@
 ---
+// src/layouts/Layout.astro
+import { SEO } from 'astro-seo';
+
+export interface Props {
+  title: "BitMedic.io | BitMedic Helps!";
+  description: "Empowering you to use your tech safely and effectively.";
+  image?: "/images/bitmedic_logo2.png"
+}
+
+const { title, description, image } = Astro.props;
+---
+---
 import WindowsToolbar from '../components/WindowsToolbar.astro';
 ---
 <!doctype html>
