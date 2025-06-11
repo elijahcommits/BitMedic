@@ -1,0 +1,61 @@
+---
+// src/components/GoFundMeButton.astro
+// This component is a simple, styled link with hover and active states.
+const goFundMeUrl = "https://gofund.me/8f7fdac4";
+---
+
+<a href={goFundMeUrl} class="windows-button" target="_blank" rel="noopener noreferrer">
+  <span><strong>DONATE TODAY</strong> </span><span class="icon">💜</span>
+</a>
+
+<style>
+  .windows-button {
+    /* Core Layout & Font */
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #000000;
+    font-family: 'Tahoma', 'Geneva', 'MS Sans Serif', sans-serif;
+    font-size: 14px;
+    
+    /* Classic Windows Button Styling */
+    background-color: #c0c0c0;
+    border: 2px outset #eeeeee;
+    box-shadow: 1px 1px 0px 1px #808080;
+
+    /* Sizing and Spacing */
+    margin: 4px 12px;
+    padding: 5px 12px;
+    text-align: center;
+    
+    /* Interaction */
+    cursor: pointer;
+    user-select: none;
+    
+    /* A quick transition makes the hover effect feel smoother */
+    transition: background-color 0.1s linear, color 0.1s linear;
+  }
+
+  /* --- NEW HOVER STYLES --- */
+  /* This section makes the button change color when you hover over it */
+  .windows-button:hover {
+    background-color: #0058a8; /* Mimics the blue from your other menu items */
+    color: #ffffff;           /* The "Donate!" text turns white */
+  }
+
+  /* This targets ONLY the icon on hover */
+  .windows-button:hover .icon {
+    color: #FF00FF; /* A classic, vibrant magenta/pink */
+  }
+
+  /* --- 'PRESSED' EFFECT ON CLICK --- */
+  /* This section handles the "pressed in" look when you click down */
+  .windows-button:active {
+    border-style: inset; /* This inverts the 3D border */
+    box-shadow: none;
+    /* This nudges the content down and to the right to complete the illusion */
+    padding: 6px 11px 4px 13px;
+  }
+</style>

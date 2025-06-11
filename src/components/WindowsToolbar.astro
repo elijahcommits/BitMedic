@@ -1,3 +1,6 @@
+---
+import GoFundMeButton from "./GoFundMeButton.astro"; // Adjust the path if needed
+---
 <div class="windows-toolbar">
   <div class="start-button-container">
     <button class="start-button" type="button" aria-haspopup="true" aria-expanded="false" aria-label="BitMedic Menu">
@@ -16,7 +19,9 @@
         <li><a href="https://nextdoor.com/pages/bitmedic-portland-or/" role="menuitem">Nextdoor</a></li>
         <li class="divider"><hr /></li>
         <!-- <li><a href="https://gofund.me/8f7fdac4" role="menuitem">Donate! 💜</a></li> -->
-        <li><div class="gfm-embed" data-url="https://www.gofundme.com/f/lets-bring-safe-tech-to-senior-citizens/widget/medium?sharesheet=undefined&attribution_id=sl:5672f73e-6227-422d-a506-50996b77adbe"></div><script defer src="https://www.gofundme.com/static/js/embed.js"></script></li>
+         <li>
+          <GoFundMeButton />
+        </li>
         <li class="divider"><hr /></li>
         <li><a href="https://bitmedic.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" role="menuitem"><img src="/icons/log_off_icon.svg" alt="" class="start-menu-icon" />Log Off...</a></li>
       </ul>
