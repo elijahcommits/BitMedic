@@ -1,4 +1,5 @@
 ---
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="BitMedic Helps!">
@@ -8,10 +9,12 @@ import Layout from '../layouts/Layout.astro';
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSe87Vmx4OSsn1eQ8zh0XDLioe3Q-O6dLpIm2Ov_m60BSitE7A/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="desktop-icon"><img src="/icons/contact_icon.svg" alt="Contact BitMedic" /><span>Contact</span></a>
       <a href="https://docs.google.com/document/d/1CuhgR8WH7JFDy9haHn_TM6TTR5rR2eo5R5MSCTVZ9Zc/edit?usp=sharing" class="desktop-icon"><img src="/icons/tech_icon.svg" alt="Recommended Tech" /><span>Recommended<br />Tech</span></a>
       <!-- <a href="/merch/" class="desktop-icon"><img src="/icons/merch_icon.svg" alt="BitMedic Merch" /><span>Merch</span></a> -->
-      <div class="desktop-icon"><img src="/icons/recycle_bin_icon.svg" alt="Recycle Bin" /><span>Recycle Bin</span></div>
+
+      {/* UPDATED: Added id="recycle-bin-icon" to this div */}
+      <div id="recycle-bin-icon" class="desktop-icon" aria-label="Trigger BSOD"><img src="/icons/recycle_bin_icon.svg" alt="Recycle Bin" /><span>Recycle Bin</span></div>
     </div>
 
-    <div class="dialogue-box">
+    <!-- <div class="dialogue-box">
         <div class="dialogue-title-bar">
             <span>BitMedic to the Rescue!</span>
             <a href="#" class="dialogue-close-button" aria-label="Trigger BSOD">X</a>
@@ -25,7 +28,7 @@ import Layout from '../layouts/Layout.astro';
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div id="bsod-screen" class="bsod-screen" style="display:none;">
       <div class="bsod-content-wrapper">
@@ -44,6 +47,7 @@ import Layout from '../layouts/Layout.astro';
   </main>
 
 <style>
+    /* All CSS styles from your last file remain the same */
     .desktop-area {
       display: flex;
       flex-direction: column;
@@ -150,21 +154,20 @@ import Layout from '../layouts/Layout.astro';
       border-color: white;
     }
 
-    /* --- NEW, MORE AUTHENTIC BSOD STYLES --- */
+    /* BSOD STYLES */
     .bsod-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: #0000AA; /* Classic BSOD blue */
+      background-color: #0000AA; 
       color: #FFFFFF;
       font-family: 'Lucida Console', 'Courier New', monospace;
       padding: 2rem;
       z-index: 99999;
       cursor: pointer;
       overflow-y: auto;
-      /* These properties enhance the sharp, retro CRT screen look */
       font-smooth: never;
       -webkit-font-smoothing: none;
     }
@@ -173,13 +176,13 @@ import Layout from '../layouts/Layout.astro';
       margin: 0;
     }
     .bsod-title {
-      background-color: #AAAAAA; /* Gray background for the title bar */
-      color: #0000AA; /* Blue text on the gray background */
+      background-color: #AAAAAA; 
+      color: #0000AA; 
       padding: 0 0.5em;
       font-weight: normal;
       text-align: center;
-      width: fit-content; /* Make the background only as wide as the text */
-      margin: 0 auto 2rem auto; /* Center the title block */
+      width: fit-content; 
+      margin: 0 auto 2rem auto; 
     }
     .bsod-screen p {
       margin-bottom: 1.5em;
@@ -189,15 +192,13 @@ import Layout from '../layouts/Layout.astro';
       list-style: none;
       padding-left: 1em;
     }
-      /* This targets links in the BSOD contact info list */
     .bsod-contact-info a,
     .bsod-contact-info a:visited {
-      color: #FFFF80; /* A bright, readable yellow for both normal and visited states */
+      color: #FFFF80; 
       text-decoration: none;
     }
-    /* This ensures the hover effect still works for better interactivity */
     .bsod-contact-info a:hover {
-      color: #FFFFFF; /* Bright white on hover */
+      color: #FFFFFF; 
     }
     .bsod-tech-info {
       margin-top: 2.5em;
@@ -207,7 +208,6 @@ import Layout from '../layouts/Layout.astro';
       margin-top: 3em;
       text-align: center;
     }
-    /* This adds the classic blinking cursor at the end */
     .bsod-restart-info::after {
       content: '█';
       animation: blink 1s step-end infinite;
@@ -234,49 +234,41 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script is:inline>
-  // The is:inline directive tells Astro to skip processing this script
-  // and inject it directly into the HTML. This is our final debugging step.
   function initializeBsodInteraction() {
-    const closeButton = document.querySelector('.dialogue-box .dialogue-close-button');
+    // UPDATED: Target the Recycle Bin icon by its new ID
+    const bsodTrigger = document.getElementById('recycle-bin-icon');
     const bsodScreen = document.getElementById('bsod-screen');
-    const dialogueBox = document.querySelector('.dialogue-box');
 
-    if (!closeButton || !bsodScreen || !dialogueBox) {
+    if (!bsodTrigger || !bsodScreen) {
       return; // Exit if elements aren't found
     }
 
-    // Since this is now an inline script, it might run before the elements exist.
-    // We must wrap the event listener attachment in a function and call it
-    // when the document is ready.
     const attachEvents = () => {
-      closeButton.addEventListener('click', function(event) {
-        event.preventDefault();
+      // UPDATED: Add the click listener to the Recycle Bin icon
+      bsodTrigger.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent any default behavior if it were a link
         bsodScreen.style.display = 'block';
-        dialogueBox.style.display = 'none';
       });
 
+      // This part remains the same: click BSOD to hide it
       bsodScreen.addEventListener('click', function() {
         bsodScreen.style.display = 'none';
-        dialogueBox.style.display = 'flex';
       });
     
+      // This part remains the same: press ESC to hide it
       document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' && bsodScreen.style.display !== 'none') {
           bsodScreen.style.display = 'none';
-          dialogueBox.style.display = 'flex';
         }
       });
     };
 
-    // Use the standard 'DOMContentLoaded' event for inline scripts
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', attachEvents);
     } else {
-      // The DOM is already ready
       attachEvents();
     }
   }
 
-  // Run our main function
   initializeBsodInteraction();
 </script>
